@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>api.core</groupId>
-    <artifactId>video-max</artifactId>
+    <artifactId>Streaming-Video-Back-End</artifactId>
     <version>0.0.1</version>
     <description>Project of Streams Video Max Padre Community</description>
 
