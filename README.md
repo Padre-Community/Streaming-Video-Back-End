@@ -1,4 +1,4 @@
-> # Aplicação de Streaming Video Max da Padre Community
+> # Aplicação de Streaming Video Max da Padre Community 🚀
 ---
 
 > ## Descrição do Projeto
