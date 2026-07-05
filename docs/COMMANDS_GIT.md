@@ -221,3 +221,37 @@
    root@server-name:~# git stash branch novo-branch
 ```
 **para criar um novo branch a partir do stash**
+
+---
+
+> # Cherry Pick Git Command
+### Para caso de commit específico que você deseja aplicar em outra branch, você pode usar o comando cherry-pick.
+
+**Supondo que você realize um commit em uma branch errada**
+**Supondo que você esteja na branch `develop`, mas você deveria estar na branch `feature/sua-task`**
+**Realize o procedimento abaixo para corrigir:**
+
+**1 - Execute git log para obter o hash do commit e copie o hash**
+```bash
+   root@server-name:~# git log
+``` 
+
+**2 - acesse a branch desejada**
+```bash
+   root@server-name:~# git checkout [branch_name]
+``` 
+
+**3 - Execute git cherry-pick com o hash do commit**
+```bash
+   root@server-name:~# git cherry-pick [hash_commit]
+```
+
+**4 - Acesse a branch com o commit errado**
+```bash
+   root@server-name:~# git checkout [branch_name_error_commit]
+``` 
+
+**5 - Execute o reset na branch com commit errado**
+```bash
+   root@server-name:~# git reset HEAD~1
+```
