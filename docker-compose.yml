@@ -1,0 +1,77 @@
+name: video-max
+
+services:
+  video-max-db:
+    image: postgres:15-alpine
+    container_name: video_max_db
+    networks:
+      - video-max-net
+    ports:
+      - '${DB_POSTGRES_PORT}:5432'
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    networks:
+      - video-max-net
+    ports:
+      - '15432:80'
+    depends_on:
+      - video-max-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+
+  portainer:
+    image: portainer/portainer-ce:lts
+    container_name: portainer
+    networks:
+      - video-max-net
+    ports:
+      - '9000:9000'
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  rabbitmq:
+    image: rabbitmq:4.2-management-alpine
+    container_name: rabbitmq
+    hostname: ${RABBITMQ_HOST}
+    networks:
+      - video-max-net
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: always
+    networks:
+      - video-max-net
+    ports:
+      - '9002:9000'
+      - '9001:9001'
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_BUCKET_NAME: ${BUCKET_NAME}
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+
+volumes:
+  minio-data:
+
+networks:
+  video-max-net:
+    driver: bridge
