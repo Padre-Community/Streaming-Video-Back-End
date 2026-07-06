@@ -1,0 +1,52 @@
+name: Pull Request Contribution [PRC]
+
+on:
+  push:
+    branches: [ feature/** ]
+
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-24.04 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.2.0
+        with:
+          java-version: 21
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Print Pull Request Information
+        run: |
+          echo "Branch: ${{ github.event.inputs.target_branch }}"
+          echo "Versão: ${{ github.event.inputs.version }}"
+          echo "Hash: ${{ needs.setup-environment.outputs.version_hash }}"
+          echo "Ambiente: ${{ github.event.inputs.environment_name }}"
+          echo "Tipo ambiente: ${{ github.event.inputs.environment_type }}"
+
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      - name: Notify Discord Success Deploy
+        if: success()
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: ${{ github.actor }}
+          message: ":rocket: Feature Nova Comunidade :rocket:\nEnviado uma nova feature\nPara [Streaming-Video-Back-End] com status :rocket: ${{ job.status }} :rocket:\n[Ver Commit](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})"
+
+      - name: Notify Discord Failure Deploy
+        if: failure()
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          color: "#b81d1d"
+          username: ${{ github.actor }}
+          message: ":triumph: Algo deu errado meu caro :triumph:\nRevise, Veja o que aconteceu e envie novamente"
