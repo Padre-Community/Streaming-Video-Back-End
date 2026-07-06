@@ -48,4 +48,4 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#b81d1d"
           username: ${{ github.actor }}
-          message: ":triumph: Algo deu errado meu caro :triumph:\nRevise, Veja o que aconteceu e envie novamente"
+          message: ":triumph: Algo deu errado meu caro :triumph:\nRevise,Veja o que aconteceu e envie novamente"
