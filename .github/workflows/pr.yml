@@ -1,11 +1,10 @@
 name: Pull Request Contribution [PRC]
 
 on:
-  push:
+  pull_request:
     branches: [ feature/** ]
 
 jobs:
-
   build:
     strategy:
       matrix:
