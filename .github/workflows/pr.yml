@@ -1,7 +1,7 @@
 name: Pull Request Contribution [PRC]
 
 on:
-  pull_request:
+  push:
     branches: [ feature/** ]
 
 jobs:
