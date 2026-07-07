@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus;
 
 @Slf4j
 @SpringBootApplication
-public class VideoMaxApplication {
+public class StreamingVideoBackEnd {
 
     public static void main(String[] args) {
-        SpringApplication.run(VideoMaxApplication.class, args);
+        SpringApplication.run(StreamingVideoBackEnd.class, args);
         log.info("VideoMaxApplication Started {}", HttpStatus.OK);
     }
 }

@@ -16,14 +16,6 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Print Pull Request Information
-        run: |
-          echo "Branch: ${{ github.event.inputs.target_branch }}"
-          echo "Versão: ${{ github.event.inputs.version }}"
-          echo "Hash: ${{ needs.setup-environment.outputs.version_hash }}"
-          echo "Ambiente: ${{ github.event.inputs.environment_name }}"
-          echo "Tipo ambiente: ${{ github.event.inputs.environment_type }}"
-
       - name: Build with Maven
         run: mvn clean install -DskipTests
 
