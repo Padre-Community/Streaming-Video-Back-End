@@ -1,0 +1,172 @@
+
+<div id="erd-container"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '12px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+  },
+});
+const diagram = `erDiagram
+  USER {
+    uuid id PK
+    string username
+    string email
+    string password_hash
+    string avatar_url
+    string bio
+    enum role
+    boolean is_verified
+    timestamp created_at
+    timestamp updated_at
+  }
+  CHANNEL {
+    uuid id PK
+    uuid owner_id FK
+    string name
+    string slug
+    string description
+    string banner_url
+    integer subscriber_count
+    boolean is_monetized
+    timestamp created_at
+  }
+  VIDEO {
+    uuid id PK
+    uuid channel_id FK
+    string title
+    string description
+    string thumbnail_url
+    enum status
+    enum visibility
+    integer duration_seconds
+    bigint view_count
+    integer like_count
+    jsonb tags
+    jsonb chapters
+    timestamp published_at
+    timestamp created_at
+  }
+  VIDEO_FILE {
+    uuid id PK
+    uuid video_id FK
+    enum quality
+    string storage_key
+    string hls_manifest_url
+    bigint file_size_bytes
+    string codec
+    integer bitrate_kbps
+  }
+  PLAYLIST {
+    uuid id PK
+    uuid user_id FK
+    string title
+    enum visibility
+    timestamp created_at
+  }
+  PLAYLIST_ITEM {
+    uuid id PK
+    uuid playlist_id FK
+    uuid video_id FK
+    integer position
+    timestamp added_at
+  }
+  SUBSCRIPTION {
+    uuid id PK
+    uuid subscriber_id FK
+    uuid channel_id FK
+    boolean notify_enabled
+    timestamp subscribed_at
+  }
+  COMMENT {
+    uuid id PK
+    uuid video_id FK
+    uuid author_id FK
+    uuid parent_id FK
+    text content
+    integer like_count
+    boolean is_pinned
+    timestamp created_at
+  }
+  WATCH_HISTORY {
+    uuid id PK
+    uuid user_id FK
+    uuid video_id FK
+    integer last_position_sec
+    boolean completed
+    timestamp watched_at
+  }
+  REACTION {
+    uuid id PK
+    uuid user_id FK
+    uuid video_id FK
+    enum type
+    timestamp created_at
+  }
+  PLAN {
+    uuid id PK
+    string name
+    decimal price_brl
+    string billing_cycle
+    jsonb features
+  }
+  USER_PLAN {
+    uuid id PK
+    uuid user_id FK
+    uuid plan_id FK
+    enum status
+    timestamp starts_at
+    timestamp ends_at
+  }
+  USER ||--o{ CHANNEL : "owns"
+  CHANNEL ||--o{ VIDEO : "has"
+  VIDEO ||--o{ VIDEO_FILE : "encoded as"
+  USER ||--o{ PLAYLIST : "creates"
+  PLAYLIST ||--o{ PLAYLIST_ITEM : "contains"
+  PLAYLIST_ITEM }o--|| VIDEO : "references"
+  USER ||--o{ SUBSCRIPTION : "subscribes"
+  CHANNEL ||--o{ SUBSCRIPTION : "receives"
+  USER ||--o{ COMMENT : "writes"
+  VIDEO ||--o{ COMMENT : "receives"
+  COMMENT ||--o{ COMMENT : "has replies"
+  USER ||--o{ WATCH_HISTORY : "generates"
+  VIDEO ||--o{ WATCH_HISTORY : "tracked in"
+  USER ||--o{ REACTION : "gives"
+  VIDEO ||--o{ REACTION : "receives"
+  USER ||--o{ USER_PLAN : "subscribes to"
+  PLAN ||--o{ USER_PLAN : "used in"
+`;
+const { svg } = await mermaid.render('erd-svg', diagram);
+document.getElementById('erd-container').innerHTML = svg;
+document.querySelectorAll('#erd-container svg .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+document.querySelectorAll('#erd-container svg .row-rect-odd path, #erd-container svg .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>
