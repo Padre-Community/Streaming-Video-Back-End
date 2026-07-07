@@ -40,4 +40,18 @@ public class Videos implements Serializable {
     @JsonBackReference
     private Users users;
 
+    @Override
+    public String toString() {
+        return "Videos{" +
+                "id=" + id +
+                ", channel='" + channel + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", recordCode='" + recordCode + '\'' +
+                ", shippingDate=" + shippingDate +
+                ", liked=" + liked +
+                ", usersId=" + (users != null ? users.getId() : null) +
+                '}';
+    }
 }
