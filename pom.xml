@@ -186,7 +186,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>video-max</finalName>
+        <finalName>Streaming-Video-Back-End</finalName>
     </build>
 
 </project>
