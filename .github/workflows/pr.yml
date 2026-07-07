@@ -46,7 +46,7 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#48f442"
           username: ${{ github.actor }}
-          message: ":rocket: Feature Nova Comunidade :rocket:\nEnviado uma nova feature\nPara [Streaming-Video-Back-End] com status :rocket: ${{ job.status }} :rocket:\n[Ver Commit](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})"
+          message: "[Ver Commit] (${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})"
 
       - name: Notify Discord Failure Deploy
         if: failure()
