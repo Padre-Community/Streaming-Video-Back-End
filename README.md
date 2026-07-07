@@ -75,6 +75,11 @@
 > ## Executor
 ---
 
+- **Após instalar o Docker, execute o comando abaixo:**
+```bash
+   docker-compose up -d
+```
+
 - **Clonar repositório `GITHUB`**
 ```bash
    git clone [url do repositório]
