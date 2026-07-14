@@ -20,7 +20,7 @@ jobs:
         run: mvn clean install -DskipTests
 
   unit-tests:
-    needs: [ maven-build ]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.0
@@ -111,7 +111,7 @@ jobs:
         uses: github/codeql-action/analyze@v3
 
   dependency-check:
-    needs: [ maven-build ]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.0
