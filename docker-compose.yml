@@ -13,6 +13,17 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
 
+  sonarqube:
+    image: sonarqube:9.9.0-community
+    hostname: sonarqube
+    container_name: sonarqube
+    depends_on:
+      - video-max-db
+    networks:
+      - video-max-net
+    ports:
+      - "9003:9000"
+
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
