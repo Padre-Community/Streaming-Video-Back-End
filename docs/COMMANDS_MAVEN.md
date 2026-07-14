@@ -41,10 +41,20 @@
 ```
 **Exibe a árvore de dependências do projeto, mostrando todas as dependências e subdependências do projeto.**
 
-```shell
+```bash
    $ mvn dependency-check:check 
 ```
 **Verifica as vulnerabilidades e versões obsoletas das libs principais e transitórias**
+
+```bash
+    $ mvn test-compile org.pitest:pitest-maven:mutationCoverage
+```
+**Executa a cobertura de mutação dos testes**
+
+```bash
+    $ mvn jacoco:report
+```
+**Gera o relatório de cobertura de código JaCoCo**
 
 ```bash
    $ mvn site
