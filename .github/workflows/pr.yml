@@ -61,18 +61,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Download unit test exec file
-        uses: actions/download-artifact@v4
-        with:
-          name: jacoco-unit
-          path: target
-
-      - name: Download integration test exec file
-        uses: actions/download-artifact@v4
-        with:
-          name: jacoco-integration
-          path: target
-
       - name: Merge exec files
         run: mvn jacoco:merge -Djacoco.destFile=target/jacoco.exec
 
