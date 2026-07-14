@@ -58,7 +58,7 @@ run_jacoco() {
 
 run_mutation() {
     log_info "Executando testes de mutação (PIT)..."
-    mvn clean test pit:mutation
+    mvn test-compile org.pitest:pitest-maven:mutationCoverage
     log_success "Testes de mutação concluídos com sucesso."
 }
 
@@ -79,7 +79,9 @@ run_dependency_check() {
 }
 
 run_all() {
+    sleep 3
     log_info "Executando TODAS as etapas de teste e análise..."
+    sleep 3
     run_junit
     run_integration
     run_jacoco

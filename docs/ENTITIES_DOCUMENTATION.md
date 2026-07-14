@@ -1,13 +1,13 @@
-# Entidades Java Criadas - Streaming Video Platform
+> # Entidades Java Criadas - Streaming Video Platform ![java.png](java.png)
 
 ## Resumo das Entidades
 
-Todas as entidades foram criadas com base no diagrama ERD (Entity Relationship Diagram) em anexo. O projeto segue o padrão:
+**Todas as entidades foram criadas com base no diagrama ERD (Entity Relationship Diagram) em anexo. O projeto segue o padrão:**
 - **ORM**: JPA/Hibernate com Jakarta Persistence
-- **IDs**: Gerados automaticamente (GenerationType.IDENTITY)
+- **IDs**: Gerados automaticamente `(GenerationType.IDENTITY)`
 - **Datas**: LocalDateTime
-- **Serialização**: Lombok (@Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor, @Builder)
-- **JSON**: Usar @JsonManagedReference e @JsonBackReference para evitar ciclos
+- **Serialização**: Lombok `(@Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor, @Builder)`
+- **JSON**: Usar `@JsonManagedReference` e `@JsonBackReference` para evitar ciclos
 
 ---
 
@@ -218,8 +218,8 @@ Todas as entidades foram criadas com base no diagrama ERD (Entity Relationship D
          (1:N)     (1:N)     (1:N)    (1:N)    (1:1)          (1:1)
           │         │         │         │         │              │
     ┌─────▼─────────▼─────────▼─────────▼─────────▼──────────────▼─────┐
-    │ VIDEO_FILES, PLAYLIST_ITEMS, REACTIONS, etc.                    │
-    └───────────────────────────────────────────────────────────────────┘
+    │ VIDEO_FILES, PLAYLIST_ITEMS, REACTIONS, etc.                     │
+    └──────────────────────────────────────────────────────────────────┘
 ```
 
 ---

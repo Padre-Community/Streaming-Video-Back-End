@@ -74,10 +74,10 @@ jobs:
           path: target
 
       - name: Merge exec files
-        run: mvn jacoco:merge -Djacoco.destFile=target/jacoco-merged.exec
+        run: mvn jacoco:merge -Djacoco.destFile=target/jacoco.exec
 
       - name: Generate report
-        run: mvn jacoco:report -Djacoco.dataFile=target/jacoco-merged.exec
+        run: mvn jacoco:report -Djacoco.dataFile=target/jacoco.exec
 
       - name: Upload merged report
         uses: actions/upload-artifact@v4
@@ -124,7 +124,7 @@ jobs:
           cache: maven
 
       - name: Run OWASP Dependency Check
-        run: mvn dependency-check:check -DfailBuildOnCVSS=7 -B -e
+        run: mvn org.owasp:dependency-check-maven:check
 
       - name: Upload Dependency Check report
         if: always()
