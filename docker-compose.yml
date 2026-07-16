@@ -1,11 +1,11 @@
 name: video-max
 
 services:
-  video-max-db:
+  steamx-db:
     image: postgres:15-alpine
-    container_name: video_max_db
+    container_name: steamx-db
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - '${DB_POSTGRES_PORT}:5432'
     environment:
@@ -18,9 +18,9 @@ services:
     hostname: sonarqube
     container_name: sonarqube
     depends_on:
-      - video-max-db
+      - steamx-db
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - "9003:9000"
 
@@ -28,11 +28,11 @@ services:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - '15432:80'
     depends_on:
-      - video-max-db
+      - steamx-db
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
@@ -41,19 +41,66 @@ services:
     image: portainer/portainer-ce:lts
     container_name: portainer
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - '9000:9000'
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1.20.0
+    container_name: uptime-kuma
+    networks:
+      - steam-x_net
+    restart: always
+    ports:
+      - '3001:3001'
+    volumes:
+      - uptime-kuma:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    networks:
+      - steam-x_net
+    ports:
+      - '8083:8080'
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    container_name: prometheus
+    networks:
+      - steam-x_net
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    networks:
+      - steam-x_net
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
+
   rabbitmq:
     image: rabbitmq:4.2-management-alpine
     container_name: rabbitmq
     hostname: ${RABBITMQ_HOST}
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - '5672:5672'
       - '15672:15672'
@@ -66,7 +113,7 @@ services:
     container_name: minio
     restart: always
     networks:
-      - video-max-net
+      - steam-x_net
     ports:
       - '9002:9000'
       - '9001:9001'
@@ -82,7 +129,8 @@ services:
 
 volumes:
   minio-data:
+  uptime-kuma:
 
 networks:
-  video-max-net:
+  steam-x_net:
     driver: bridge
