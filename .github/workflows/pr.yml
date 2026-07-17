@@ -35,14 +35,14 @@ jobs:
         run: mvn test -DskipITs -B -e
 
       - name: Upload unit test results (JUnit)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: unit-test-results
           path: target/surefire-reports/*.xml
 
       - name: Upload JaCoCo exec file (unit tests)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: jacoco-unit
@@ -64,7 +64,7 @@ jobs:
         run: mvn clean test jacoco:report
 
   codeql:
-    needs: [ unit-tests ]
+    needs: [ jacoco-report ]
     runs-on: ubuntu-latest
     permissions:
       security-events: write
