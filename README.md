@@ -71,6 +71,7 @@
 - [IntelliJ](docs/INTELLIJ.md)
 - [Comandos GIT](docs/COMMANDS_GIT.md)
 - [Comandos Maven](docs/COMMANDS_MAVEN.md)
+- [Start Environment](docs/START_ENVIRONMENT.md)
 
 > ## Executor
 ---
