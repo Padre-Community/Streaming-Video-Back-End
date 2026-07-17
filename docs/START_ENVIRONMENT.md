@@ -49,7 +49,7 @@ $  git pull origin develop
 `prometheus - viabilizador de leitura métrica`
 > $ [http://localhost:9090/query](http://localhost:9090/query)
 
-`list prom - lista dos comando de lietura métrica dos recurslo da aplicação` 
+`list prom - lista dos comando de leitura métrica dos recursos da aplicação` 
 > $ [http://localhost:8080/actuator/prometheus](http://localhost:8080/actuator/prometheus)
 
 `rabbitmq - gerenciador de estado de mensageria assíncrono`
