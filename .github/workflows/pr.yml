@@ -39,7 +39,7 @@ jobs:
         if: always()
         with:
           name: unit-test-results
-          path: target/surefire-reports/*.xml
+          path: target/surefire-reports/*.html
 
       - name: Upload JaCoCo exec file (unit tests)
         uses: actions/upload-artifact@v7.0.1
