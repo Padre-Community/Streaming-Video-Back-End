@@ -50,6 +50,12 @@ run_integration() {
     log_success "Testes de integração concluídos com sucesso."
 }
 
+run_lint() {
+    log_info "Executando lint test"
+    mvn checkstyle:check
+    log_success "Testes JUnit concluídos com sucesso."
+}
+
 run_jacoco() {
     log_info "Executando testes e gerando relatório de cobertura (JaCoCo)..."
     mvn clean test jacoco:report
@@ -84,6 +90,7 @@ run_all() {
     sleep 3
     run_junit
     run_integration
+    run_lint
     run_jacoco
     run_mutation
     run_sonar
@@ -97,6 +104,7 @@ show_help() {
     echo "Opções disponíveis:"
     echo "  junit               Executa apenas testes unitários (mvn test)"
     echo "  integration         Executa testes de integração (mvn verify)"
+    echo "  lint test           Executa teste de lint code (mvn checkstyle:check)"
     echo "  jacoco              Executa testes e gera relatório de cobertura JaCoCo"
     echo "  mutation            Executa testes de mutação (PIT)"
     echo "  sonar               Executa análise de código com SonarQube"
@@ -116,6 +124,9 @@ case "${1:-help}" in
         ;;
     integration)
         run_integration
+        ;;
+    lint)
+        run_lint
         ;;
     jacoco)
         run_jacoco
