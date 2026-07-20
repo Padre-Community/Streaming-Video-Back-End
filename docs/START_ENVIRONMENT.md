@@ -54,3 +54,36 @@ $  git pull origin develop
 
 `rabbitmq - gerenciador de estado de mensageria assíncrono`
 > $ [http://localhost:15672/](http://localhost:15672/) 
+
+---
+> ## PROCESSO DE INICIALIZAÇÃO DE DESENVOLVIMENTO E CONSTRUÇÃO DE FEATURE/TASK
+
+**Primeiramente, verifique se há novos envios e registro de novas features na branch develop no repositório remoto**
+**sincronizando o repositório remoto (github) com a sua máquina local (IntelliJ IDEA)**
+````bash
+  $ git fetch
+````
+
+**Agora, execute a atualização da sua branch local com a develop remota**
+````bash
+  $ git pull origin develop
+````
+
+**Crie uma branch na sua máquina local para iniciar a construção da feature**
+````bash
+  $ git checkout -b feature/{squad_name}/{issue_task_number}
+````
+**Ex: `git checkout -b feature/trunks/68`**
+**significa que você está enviando a issue task do kanban que estava em backlog de número 68**
+
+**[Implementar tratamento global de exceções #68](https://github.com/Padre-Community/Streaming-Video-Back-End/issues/68)**
+
+**Após finalizar o desenvolvimento, execute o comando para realizar os testes**
+````bash
+  $ sh test.sh all
+````
+**Caso ocorra falhas e/ou ocorrências, verifique, pesquise e corrija**
+**Caso tenha obtido sucesso nos testes, realize o push da sua branch**
+````bash
+  $ git push origin feature/squad_name/issue_task_name
+````
