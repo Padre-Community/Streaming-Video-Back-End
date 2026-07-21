@@ -2,13 +2,13 @@ global:
   scrape_interval: 15s
   evaluation_interval: 15s
 scrape_configs:
-  - job_name: 'steamx-backend'
+  - job_name: 'streamx-backend'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: [ 'host.docker.internal:8080' ]
         labels:
-          application: 'steamx-backend'
+          application: 'streamx-backend'
 
   - job_name: 'prometheus'
     scrape_interval: 5s
@@ -24,3 +24,10 @@ scrape_configs:
       - targets: [ 'host.docker.internal:8083' ]
         labels:
           application: 'cadvisor'
+
+  - job_name: 'uptime-kuma'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ 'host.docker.internal:3001' ]
+        labels:
+          application: 'uptime-kuma'

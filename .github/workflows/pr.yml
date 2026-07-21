@@ -36,35 +36,18 @@ jobs:
 
       - name: Upload unit test results (JUnit)
         uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
           name: unit-test-results
           path: target/surefire-reports/*.html
 
       - name: Upload JaCoCo file (unit tests)
         uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
           name: jacoco-unit
           path: target/site/jacoco/index.html
 
-  jacoco-report:
-    needs: [ unit-tests ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Set up JDK 21
-        uses: actions/setup-java@v5.4.0
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Generate JaCoCo Coverage Report
-        run: mvn clean test jacoco:report
-
   codeql:
-    needs: [ jacoco-report ]
+    needs: [ unit-tests ]
     runs-on: ubuntu-latest
     permissions:
       security-events: write
