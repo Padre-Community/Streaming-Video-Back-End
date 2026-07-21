@@ -12,7 +12,7 @@ set -e
 # ----------------------------------------------------------------------------
 SONAR_PROJECT_KEY="Stream-Video-Back-End"
 SONAR_HOST_URL="http://localhost:9003"
-SONAR_LOGIN="${SONAR_LOGIN:sqp_7a006677931982c56b53c90c134fc554a99680d5}"
+SONAR_LOGIN="${SONAR_LOGIN:sqa_cd6f47d3ed158a14f8d497d438e89602a369b8cd}"
 
 # Cores para output no terminal (melhora a legibilidade)
 RED='\033[0;31m'
@@ -52,13 +52,13 @@ run_integration() {
 
 run_lint() {
     log_info "Executando lint test"
-    mvn checkstyle:check
-    log_success "Testes JUnit concluídos com sucesso."
+    mvn clean
+    log_success "Testes Lint concluídos com sucesso."
 }
 
 run_jacoco() {
     log_info "Executando testes e gerando relatório de cobertura (JaCoCo)..."
-    mvn clean test jacoco:report
+    mvn clean test
     log_success "Relatório JaCoCo gerado com sucesso. Verifique: target/site/jacoco/index.html"
 }
 

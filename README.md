@@ -1,3 +1,8 @@
+<p align="center">
+ <img src="https://img.shields.io/static/v1?label=OWNER&message=IVAN SANTOS&color=856a68&labelColor=90876I" alt="@ivan_santos"/>
+ <img src="https://img.shields.io/static/v1?label=STATUS&message=DEVELOPMENT&color=00ab4e&labelColor=90876I" alt="Status"/>
+</p>
+
 > # Aplicação de Streaming Video Max da Padre Community 🚀
 ---
 

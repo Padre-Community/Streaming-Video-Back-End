@@ -36,14 +36,12 @@ jobs:
 
       - name: Upload unit test results (JUnit)
         uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
           name: unit-test-results
           path: target/surefire-reports/*.html
 
       - name: Upload JaCoCo file (unit tests)
         uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
           name: jacoco-unit
           path: target/site/jacoco/index.html
