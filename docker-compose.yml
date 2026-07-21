@@ -49,7 +49,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   uptime-kuma:
-    image: louislam/uptime-kuma:1.20.0
+    image: louislam/uptime-kuma:2.4.0
     container_name: uptime-kuma
     networks:
       - streamx_net

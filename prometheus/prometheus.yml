@@ -24,10 +24,3 @@ scrape_configs:
       - targets: [ 'host.docker.internal:8083' ]
         labels:
           application: 'cadvisor'
-
-  - job_name: 'uptime-kuma'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ 'host.docker.internal:3001' ]
-        labels:
-          application: 'uptime-kuma'
