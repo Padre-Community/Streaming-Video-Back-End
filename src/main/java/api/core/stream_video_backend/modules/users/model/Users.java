@@ -29,6 +29,7 @@ public class Users implements Serializable {
     @Column(name = "avatar", columnDefinition = "TEXT")
     private String avatar;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
