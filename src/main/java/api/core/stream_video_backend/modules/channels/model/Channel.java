@@ -24,31 +24,37 @@ public class Channel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String slug;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "banner_url", columnDefinition = "TEXT")
     private String bannerUrl;
 
-    private Integer subscriberCount;
+    @Column(name = "subscriber_count")
+    private Integer subscriberCount = 0;
 
-    private Boolean isMonetized;
+    @Column(name = "is_monetized")
+    private Boolean isMonetized = false;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     @JsonBackReference
     private Users owner;
 
-    @OneToMany(mappedBy = "channel")
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Video> videos;
 
-    @OneToMany(mappedBy = "channel")
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Subscription> subscriptions;
 }
