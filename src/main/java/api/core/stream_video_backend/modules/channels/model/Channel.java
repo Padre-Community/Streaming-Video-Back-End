@@ -37,10 +37,10 @@ public class Channel implements Serializable {
     private String bannerUrl;
 
     @Column(name = "subscriber_count")
-    private Integer subscriberCount = 0;
+    private Integer subscriberCount;
 
     @Column(name = "is_monetized")
-    private Boolean isMonetized = false;
+    private Boolean isMonetized;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
