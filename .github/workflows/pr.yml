@@ -99,6 +99,7 @@ jobs:
           message: ":triumph: Algo deu errado meu caro :triumph:\nRevise o que aconteceu e envie novamente"
 
   echo-info:
+    needs: [ codeql ]
     name: Pipeline Summary Info
     if: always()
     runs-on: ubuntu-latest
