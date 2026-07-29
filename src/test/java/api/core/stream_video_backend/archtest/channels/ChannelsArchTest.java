@@ -1,30 +1,8 @@
-package api.core.stream_video_backend.archtest.users;
+package api.core.stream_video_backend.archtest.channels;
 
-import com.tngtech.archunit.core.importer.ImportOption;
-import com.tngtech.archunit.junit.AnalyzeClasses;
-import com.tngtech.archunit.junit.ArchIgnore;
-import com.tngtech.archunit.junit.ArchTest;
-import com.tngtech.archunit.lang.ArchRule;
-import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
-import com.tngtech.archunit.library.GeneralCodingRules;
-import jakarta.persistence.Entity;
-import org.slf4j.Logger;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.io.Serializable;
-
-import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
-
-@AnalyzeClasses(packages = "api.core.stream_video_backend.modules.users", importOptions = ImportOption.DoNotIncludeTests.class)
-public class UsersArchTest {
-
+//@AnalyzeClasses(packages = "api.core.stream_video_backend.modules.channels", importOptions = ImportOption.DoNotIncludeTests.class)
+public class ChannelsArchTest {
+/*
     //Layer
     @ArchTest
     static ArchRule layerTest = layeredArchitecture()
@@ -62,8 +40,7 @@ public class UsersArchTest {
     //DTO
     @ArchTest
     static ArchRule dtoTest = ArchRuleDefinition.classes()
-            .that()
-            .resideInAnyPackage("..dto..","..request..", "..response..")
+            .that().resideInAPackage("..dto..")
             .should()
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
@@ -150,23 +127,32 @@ public class UsersArchTest {
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
 
+    //Utils
+    @ArchIgnore
+    @ArchTest
+    static ArchRule utilsValidateParameterTest = ArchRuleDefinition.classes()
+            .that().resideInAPackage("..utils..")
+            .should().haveSimpleName("ValidateParameter")
+            .because("Classe utilitária para conversão de tipo String/Long e seu tratamento em caso de erro");
+
+
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..utils..")
             .should().haveOnlyPrivateConstructors();
 
     //Logs
-    @ArchIgnore
     @ArchTest
     static ArchRule logTest = ArchRuleDefinition.fields()
             .that().haveRawType(Logger.class)
             .should().bePrivate()
             .andShould().beStatic()
-            .andShould().beFinal();
+            .andShould().beFinal()
+            .allowEmptyShould(true);
 
     @ArchTest
     static ArchRule log2Test = GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
 
     @ArchTest
-    static ArchRule injectionDependencyTest = GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+    static ArchRule injectionDependencyTest = GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;*/
 }

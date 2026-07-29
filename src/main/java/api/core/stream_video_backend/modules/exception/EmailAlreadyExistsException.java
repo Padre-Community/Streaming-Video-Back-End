@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.modules.exceptions;
+package api.core.stream_video_backend.modules.exception;
 
 public class EmailAlreadyExistsException extends RuntimeException {
 

@@ -14,15 +14,14 @@ services:
       POSTGRES_DB: ${DB_NAME}
 
   sonarqube:
-    image: sonarqube:9.9.0-community
-    hostname: sonarqube
+    image: sonarqube:latest
     container_name: sonarqube
-    depends_on:
-      - streamx-db
     networks:
       - streamx_net
     ports:
       - "9003:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: true
 
   pgadmin:
     image: dpage/pgadmin4:latest
