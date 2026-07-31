@@ -1,6 +1,6 @@
 package api.core.stream_video_backend.modules.users.services;
 
-import api.core.stream_video_backend.modules.exceptions.EmailAlreadyExistsException;
+import api.core.stream_video_backend.modules.exception.EmailAlreadyExistsException;
 import api.core.stream_video_backend.modules.users.dto.request.UsersRequest;
 import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
 import api.core.stream_video_backend.modules.users.model.Users;
@@ -19,21 +19,23 @@ public class UsersServices {
     private final PasswordEncoder passwordEncoder;
 
     public UsersResponse registerUser(UsersRequest request) {
+
         if (usersRepository.findByEmail(request.email()).isPresent()) {
             throw new EmailAlreadyExistsException("Email já existe");
         }
 
         LocalDateTime now = LocalDateTime.now();
         Users users = Users.builder()
-                .name(request.name())
-                .email(request.email())
-                .password(passwordEncoder.encode(request.password()))
-                .createdAt(now)
-                .updatedAt(now)
-                .status(true)
-                .build();
+                           .name(request.name())
+                           .email(request.email())
+                           .password(passwordEncoder.encode(request.password()))
+                           .createdAt(now)
+                           .updatedAt(now)
+                           .status(true)
+                           .build();
 
-        Users saved = usersRepository.save(users);
-        return new UsersResponse(saved.getName(), saved.getEmail());
+        Users save = usersRepository.save(users);
+
+        return new UsersResponse(save.getName(), save.getEmail());
     }
 }

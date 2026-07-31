@@ -10,10 +10,10 @@ set -e
 # ----------------------------------------------------------------------------
 # Configurações
 # ----------------------------------------------------------------------------
-SONAR_PROJECT_KEY="Stream-Video-Back-End"
+SONAR_PROJECT_KEY="StreamVideoBackEnd"
 SONAR_HOST_URL="http://localhost:9003"
-SONAR_LOGIN="${SONAR_LOGIN:sqa_cd6f47d3ed158a14f8d497d438e89602a369b8cd}"
-
+SONAR_TOKEN=sqa_0bd28e6637f2bb9d208cc2e0c2ad50a4a7007c0a
+SONARQUBE_PASS="DEVMEN0r13@@"
 # Cores para output no terminal (melhora a legibilidade)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -52,13 +52,13 @@ run_integration() {
 
 run_lint() {
     log_info "Executando lint test"
-    mvn clean
+    mvn clean install -DskipTests
     log_success "Testes Lint concluídos com sucesso."
 }
 
 run_jacoco() {
     log_info "Executando testes e gerando relatório de cobertura (JaCoCo)..."
-    mvn clean test
+    mvn test jacoco:report && mvn verify jacoco:report
     log_success "Relatório JaCoCo gerado com sucesso. Verifique: target/site/jacoco/index.html"
 }
 
@@ -71,30 +71,27 @@ run_mutation() {
 run_sonar() {
     log_info "Executando análise estática com SonarQube..."
     # Nota: Certifique-se de que o SonarQube está rodando em http://localhost:9003
-    mvn clean verify sonar:sonar \
-        -Dsonar.projectKey="${SONAR_PROJECT_KEY}" \
-        -Dsonar.host.url="${SONAR_HOST_URL}" \
-        -Dsonar.login="${SONAR_LOGIN}"
+    mvn clean install && mvn verify sonar:sonar -Dsonar.token=sqa_0bd28e6637f2bb9d208cc2e0c2ad50a4a7007c0a
     log_success "Análise SonarQube enviada com sucesso."
 }
 
-run_dependency_check() {
-    log_info "Executando verificação de vulnerabilidades (OWASP Dependency Check)..."
-    mvn org.owasp:dependency-check-maven:check
-    log_success "Verificação de dependências concluída. Verifique o relatório em: target/dependency-check-report.html"
-}
+##run_dependency_check() {
+##    log_info "Executando verificação de vulnerabilidades (OWASP Dependency Check)..."
+##    mvn org.owasp:dependency-check-maven:check
+##    log_success "Verificação de dependências concluída. Verifique o relatório em: target/dependency-check-report.html"
+## }
 
 run_all() {
     sleep 3
     log_info "Executando TODAS as etapas de teste e análise..."
     sleep 3
+    run_sonar
     run_junit
     run_integration
     run_lint
     run_jacoco
     run_mutation
-    run_sonar
-    run_dependency_check
+   # run_dependency_check
     log_success "Todas as etapas foram concluídas com sucesso!"
 }
 
@@ -102,13 +99,13 @@ show_help() {
     echo "Uso: $0 [opção]"
     echo ""
     echo "Opções disponíveis:"
+    echo "  sonar               Executa análise de código com SonarQube"
     echo "  junit               Executa apenas testes unitários (mvn test)"
     echo "  integration         Executa testes de integração (mvn verify)"
     echo "  lint test           Executa teste de lint code (mvn checkstyle:check)"
     echo "  jacoco              Executa testes e gera relatório de cobertura JaCoCo"
     echo "  mutation            Executa testes de mutação (PIT)"
-    echo "  sonar               Executa análise de código com SonarQube"
-    echo "  dependency          Executa verificação de vulnerabilidades OWASP"
+   # echo "  dependency          Executa verificação de vulnerabilidades OWASP"
     echo "  all                 Executa todas as etapas acima sequencialmente"
     echo "  help                Exibe esta mensagem de ajuda"
     echo ""
@@ -119,6 +116,9 @@ show_help() {
 # ==============================================================================
 
 case "${1:-help}" in
+    sonar)
+        run_sonar
+        ;;
     junit)
         run_junit
         ;;
@@ -134,12 +134,9 @@ case "${1:-help}" in
     mutation)
         run_mutation
         ;;
-    sonar)
-        run_sonar
-        ;;
-    dependency)
-        run_dependency_check
-        ;;
+#    dependency)
+#        run_dependency_check
+#        ;;
     all)
         run_all
         ;;

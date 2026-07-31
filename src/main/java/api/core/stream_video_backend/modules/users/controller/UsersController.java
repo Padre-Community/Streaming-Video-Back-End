@@ -3,24 +3,21 @@ package api.core.stream_video_backend.modules.users.controller;
 import api.core.stream_video_backend.modules.users.dto.request.UsersRequest;
 import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
 import api.core.stream_video_backend.modules.users.services.UsersServices;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(path = "/api/users")
 @RequiredArgsConstructor
-public class UsersApi {
+public class UsersController {
 
     private final UsersServices usersServices;
 
     @PostMapping("/save")
-    public ResponseEntity<UsersResponse> register(@Valid @RequestBody UsersRequest request) {
+    public ResponseEntity<UsersResponse> register(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
+        UsersRequest request = new UsersRequest(name, email, password);
         return ResponseEntity.status(HttpStatus.CREATED).body(usersServices.registerUser(request));
     }
 }

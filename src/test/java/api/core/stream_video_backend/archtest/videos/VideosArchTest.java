@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.archtest.users;
+package api.core.stream_video_backend.archtest.videos;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -22,8 +22,8 @@ import java.io.Serializable;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
-@AnalyzeClasses(packages = "api.core.stream_video_backend.modules.users", importOptions = ImportOption.DoNotIncludeTests.class)
-public class UsersArchTest {
+@AnalyzeClasses(packages = "api.core.stream_video_backend.modules.videos", importOptions = ImportOption.DoNotIncludeTests.class)
+public class VideosArchTest {
 
     //Layer
     @ArchTest
@@ -62,8 +62,7 @@ public class UsersArchTest {
     //DTO
     @ArchTest
     static ArchRule dtoTest = ArchRuleDefinition.classes()
-            .that()
-            .resideInAnyPackage("..dto..","..request..", "..response..")
+            .that().resideInAPackage("..dto..")
             .should()
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
@@ -125,7 +124,6 @@ public class UsersArchTest {
             .should().beInterfaces().andShould().beAssignableTo(JpaRepository.class)
             .because("Interfaces que fazem abstração ao banco de dados, devem herdar os métodos de manipulação e persistência");
 
-
     //Service
     @ArchTest
     static ArchRule servicesTest = ArchRuleDefinition.classes()
@@ -149,6 +147,7 @@ public class UsersArchTest {
             .that().resideInAPackage("..services..")
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
+
 
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
