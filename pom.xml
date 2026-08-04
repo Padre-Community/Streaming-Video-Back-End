@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>api.core</groupId>
-    <artifactId>Streaming-Video-Back-End</artifactId>
+    <artifactId>streamx</artifactId>
     <version>0.0.1</version>
     <description>Project of Streams Videos Padre Community</description>
 
@@ -19,11 +19,11 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <sonar.projectKey>StreamingVideoBackEnd</sonar.projectKey>
-        <sonar.projectName>StreamingVideoBackEnd</sonar.projectName>
+        <sonar.projectKey>streamx</sonar.projectKey>
+        <sonar.projectName>streamx</sonar.projectName>
         <sonar.host.url>http://localhost:9003</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.coverage.exclusions>src/**/StreamingVideoBackEnd.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>src/**/streamx.java</sonar.coverage.exclusions>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
@@ -288,7 +288,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>Streaming-Video-Back-End</finalName>
+        <finalName>streamx</finalName>
     </build>
 
 </project>
