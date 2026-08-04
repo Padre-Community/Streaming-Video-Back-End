@@ -1,4 +1,4 @@
 package api.core.stream_video_backend.modules.audit.controller;
 
-public class AuditApi {
+public class AuditController {
 }
