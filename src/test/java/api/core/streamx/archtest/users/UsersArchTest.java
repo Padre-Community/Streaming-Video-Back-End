@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.archtest.users;
+package api.core.streamx.archtest.users;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;

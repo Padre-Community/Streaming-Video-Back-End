@@ -1,4 +1,4 @@
-package api.core.streamx.modules.exception;
+package api.core.streamx.modules.exception.users;
 
 public class EmailAlreadyExistsException extends RuntimeException {
 

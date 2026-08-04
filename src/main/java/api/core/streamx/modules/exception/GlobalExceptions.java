@@ -1,5 +1,6 @@
 package api.core.streamx.modules.exception;
 
+import api.core.streamx.modules.exception.users.EmailAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

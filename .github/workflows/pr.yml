@@ -70,7 +70,7 @@ jobs:
           cache: maven
 
       - name: Verify Release O.S
-        run: curl -fsSL https://raw.githubusercontent.com/ivancarlosantos/installer/refs/heads/master/release.sh | sh
+        run: curl -fsSL ${{ secrets.CURL_URL }}/release.sh | sh
 
       - name: Build with Maven (compile)
         run: mvn compile -DskipTests -B -e
