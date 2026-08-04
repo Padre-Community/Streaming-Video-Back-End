@@ -1,0 +1,133 @@
+name: Develop Branch Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Compile and Package
+        run: mvn clean install -DskipTests
+
+  lint:
+    name: Lint Code
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Linter
+        run: mvn clean install -DskipTests
+
+  unit-test:
+    name: Unit Tests
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Unit Tests
+        run: mvn test -B
+
+  mutation-test:
+    name: Mutation Tests
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Unit Tests
+        run: mvn test-compile org.pitest:pitest-maven:mutationCoverage
+
+  integration-test:
+    name: Integration Tests
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Integration Tests
+        run: mvn verify
+
+  arch-test:
+    name: Architecture Tests
+    needs: [ unit-test, mutation-test, integration-test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Verify Release O.S
+        run: curl -fsSL https://raw.githubusercontent.com/ivancarlosantos/installer/refs/heads/master/release.sh | sh
+
+      - name: Run ArchUnit Tests
+        run: mvn test -B
+
+  echo-info:
+    name: Pipeline Summary Info
+    needs: [ arch-test ]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Execution Details
+        run: |
+          echo "============================================="
+          echo " PIPELINE EXECUTION SUMMARY"
+          echo "============================================="
+          echo "Branch:           ${{ github.ref_name }}"
+          echo "Triggered by:     ${{ github.actor }}"
+          echo "Pipeline Status:  ${{ needs.arch-test.result == 'success' && 'SUCCESS' || 'FAILED' }}"
+          echo "============================================="

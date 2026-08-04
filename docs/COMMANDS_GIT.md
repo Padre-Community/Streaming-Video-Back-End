@@ -58,6 +58,16 @@
 **lista as branches local com os últimos comentários/mensagens**
 
 ```bash
+   root@server-name:~# git branch -m [novo-nome]
+```
+**altera o nome da branch, se você já estiver na branch que quer renomear**
+
+```bash
+   root@server-name:~# git branch -m [nome-antigo] [novo-nome]
+```
+**altera o nome da branch, se você estiver em outra branch**
+
+```bash
    root@server-name:~# git checkout branch [branch_name]
 ```
 **muda de branch**
