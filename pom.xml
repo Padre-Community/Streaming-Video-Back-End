@@ -19,11 +19,11 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <sonar.projectKey>streamx</sonar.projectKey>
-        <sonar.projectName>streamx</sonar.projectName>
+        <sonar.projectKey>StreamxApplication</sonar.projectKey>
+        <sonar.projectName>StreamxApplication</sonar.projectName>
         <sonar.host.url>http://localhost:9003</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.coverage.exclusions>src/**/streamx.java</sonar.coverage.exclusions>
+        <!-- <sonar.coverage.exclusions>src/**/streamx.java</sonar.coverage.exclusions> -->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
@@ -256,7 +256,9 @@
                         </goals>
                         <configuration>
                             <excludes>
-                                <exclude>**/StreamingVideoBackEnd.class</exclude>
+                                <exclude>**/StreamxApplication.class</exclude>
+                                <exclude>**/InterceptorConfig.class</exclude>
+                                <exclude>**/LogProcessorInterceptor.class</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -290,5 +292,4 @@
         </plugins>
         <finalName>streamx</finalName>
     </build>
-
 </project>

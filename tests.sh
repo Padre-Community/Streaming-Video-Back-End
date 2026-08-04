@@ -10,9 +10,9 @@ set -e
 # ----------------------------------------------------------------------------
 # Configurações
 # ----------------------------------------------------------------------------
-SONAR_PROJECT_KEY="StreamVideoBackEnd"
+SONAR_PROJECT_KEY="StreamxApplication"
 SONAR_HOST_URL="http://localhost:9003"
-SONAR_TOKEN=sqa_0bd28e6637f2bb9d208cc2e0c2ad50a4a7007c0a
+SONAR_TOKEN=sqa_0edad1c0f4f9fef052793672249edb1741530607
 SONARQUBE_PASS="DEVMEN0r13@@"
 # Cores para output no terminal (melhora a legibilidade)
 RED='\033[0;31m'
@@ -44,6 +44,16 @@ run_junit() {
     log_success "Testes JUnit concluídos com sucesso."
 }
 
+run_scout() {
+    log_info "Executando análise de vulnerabilidades do Docker Image (Scout)..."
+    docker build -t stream-x:release .
+    docker scout cves --only-severity critical,high stream-x:release
+    docker scout recommendations --tag stream-x:release
+    sleep 5
+    docker rmi stream-x:release
+    log_success "Análise do Docker Scout concluída com sucesso."
+}
+
 run_integration() {
     log_info "Executando testes de integração (MockMVC/Integration Tests)..."
     mvn verify
@@ -71,7 +81,7 @@ run_mutation() {
 run_sonar() {
     log_info "Executando análise estática com SonarQube..."
     # Nota: Certifique-se de que o SonarQube está rodando em http://localhost:9003
-    mvn clean install && mvn verify sonar:sonar -Dsonar.token=sqa_0bd28e6637f2bb9d208cc2e0c2ad50a4a7007c0a
+    mvn clean install && mvn verify sonar:sonar -Dsonar.token=sqa_0edad1c0f4f9fef052793672249edb1741530607
     log_success "Análise SonarQube enviada com sucesso."
 }
 
@@ -92,6 +102,7 @@ run_all() {
     run_jacoco
     run_mutation
    # run_dependency_check
+    run_scout
     log_success "Todas as etapas foram concluídas com sucesso!"
 }
 
@@ -105,7 +116,8 @@ show_help() {
     echo "  lint test           Executa teste de lint code (mvn checkstyle:check)"
     echo "  jacoco              Executa testes e gera relatório de cobertura JaCoCo"
     echo "  mutation            Executa testes de mutação (PIT)"
-   # echo "  dependency          Executa verificação de vulnerabilidades OWASP"
+   # echo " dependency          Executa verificação de vulnerabilidades OWASP"
+    echo "  scout               Executa análise de vulnerabilidades do Docker Image (Scout)"
     echo "  all                 Executa todas as etapas acima sequencialmente"
     echo "  help                Exibe esta mensagem de ajuda"
     echo ""
@@ -133,6 +145,9 @@ case "${1:-help}" in
         ;;
     mutation)
         run_mutation
+        ;;
+    scout)
+        run_scout
         ;;
 #    dependency)
 #        run_dependency_check

@@ -2,8 +2,7 @@ name: Develop Branch Pipeline
 
 on:
   push:
-    branches:
-      - develop
+    branches: [ develop ]
 
 jobs:
   build:
@@ -111,7 +110,7 @@ jobs:
           cache: maven
 
       - name: Verify Release O.S
-        run: curl -fsSL https://raw.githubusercontent.com/ivancarlosantos/installer/refs/heads/master/release.sh | sh
+        run: curl -fsSL ${{ secrets.CURL_URL }}/release.sh | sh
 
       - name: Run ArchUnit Tests
         run: mvn test -B
