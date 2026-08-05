@@ -77,4 +77,4 @@ jobs:
         run: docker tag ${{ secrets.DOCKER_USERNAME }}/stream-x ${{ secrets.DOCKER_USERNAME }}/stream-x:production
 
       - name: Publish Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/stream-x
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/stream-x:production
