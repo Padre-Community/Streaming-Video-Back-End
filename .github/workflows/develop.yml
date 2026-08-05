@@ -94,9 +94,27 @@ jobs:
       - name: Run Integration Tests
         run: mvn verify
 
+  e2e-test:
+    name: End To End Tests
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run End To End Tests
+        run: mvn verify
+
   arch-test:
     name: Architecture Tests
-    needs: [ unit-test, mutation-test, integration-test ]
+    needs: [ unit-test, mutation-test, integration-test, e2e-test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
