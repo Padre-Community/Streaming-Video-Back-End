@@ -6,18 +6,24 @@ ADD /pom.xml /app
 
 RUN mvn -f /app/pom.xml clean package -Dmaven.test.skip
 
-FROM eclipse-temurin:21-jre-alpine AS runtime
+FROM alpine:3.24.1 AS runtime
+
+RUN apk update
+
+RUN apk add openjdk21-jre
+
+RUN apk update && apk upgrade --no-cache
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-USER appuser
+USER streamxuser
+
+LABEL key="app.stream-x"
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /app/target/*.jar video-max.jar
+COPY --from=builder /app/target/*.jar stream-x.jar
 
 EXPOSE 8080
 
-LABEL key="app.video-max"
-
-ENTRYPOINT ["java", "-jar", "video-max.jar"]
+ENTRYPOINT ["java", "-jar", "stream-x.jar"]

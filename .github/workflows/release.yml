@@ -1,4 +1,4 @@
-name: Docker Deploy Image
+name: Release Branch Pipeline
 
 on:
   push:
