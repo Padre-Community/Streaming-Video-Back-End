@@ -1,4 +1,6 @@
 package api.core.streamx.modules.billing.dto.response;
 
-public record BillingResponse() {
+import java.math.BigDecimal;
+
+public record BillingResponse(Long id, String name, BigDecimal priceBrl) {
 }
