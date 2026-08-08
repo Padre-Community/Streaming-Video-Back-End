@@ -1,13 +1,13 @@
 package api.core.streamx.modules.videos.dto.response;
 
-import api.core.streamx.modules.channels.dto.response.ChannelResponseSimpleDTO;
+import api.core.streamx.modules.channels.dto.response.ChannelResponseSimple;
 import api.core.streamx.modules.videos.enums.StatusVideo;
 import api.core.streamx.modules.videos.enums.Visibility;
 
 import java.time.LocalDateTime;
 
 
-public record VideosResponseDTO(
+public record VideosResponse(
 
                 Long id,
                 String title,
@@ -23,8 +23,8 @@ public record VideosResponseDTO(
                 String chapters,
                 LocalDateTime publishedAt,
                 Boolean liked,
-                CategoryResponseDTO category,
-                ChannelResponseSimpleDTO channel,
-                PlaylistResponseDTO playlist
+                CategoryResponse category,
+                ChannelResponseSimple channel,
+                PlaylistResponse playlist
 ) {
 }

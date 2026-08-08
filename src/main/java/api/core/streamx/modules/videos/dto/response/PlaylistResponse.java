@@ -4,5 +4,5 @@ import api.core.streamx.modules.videos.enums.Visibility;
 
 import java.time.LocalDateTime;
 
-public record PlaylistResponseDTO(Long id, String playListName, Visibility visibility, LocalDateTime createdAt) {
+public record PlaylistResponse(Long id, String playListName, Visibility visibility, LocalDateTime createdAt) {
 }

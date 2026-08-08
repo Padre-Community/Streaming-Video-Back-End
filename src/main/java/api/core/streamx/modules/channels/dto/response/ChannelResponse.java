@@ -4,7 +4,7 @@ import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
 
 import java.time.LocalDateTime;
 
-public record ChannelResponseDTO(
+public record ChannelResponse(
         Long id,
         String name,
         String slug,
