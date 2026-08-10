@@ -1,7 +1,7 @@
-package api.core.streamx.archtest.channels;
+package api.core.streamx.archtest.analytics;
 
-//@AnalyzeClasses(packages = "api.core.streamx.modules.channels", importOptions = ImportOption.DoNotIncludeTests.class)
-public class ChannelsArchTest {
+//@AnalyzeClasses(packages = "api.core.streamx.modules.analytics", importOptions = ImportOption.DoNotIncludeTests.class)
+public class AnalyticsArchTest {
 /*
     //Layer
     @ArchTest

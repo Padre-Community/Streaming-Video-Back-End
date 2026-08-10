@@ -22,6 +22,8 @@ services:
       - "9003:9000"
     environment:
       SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -129,6 +131,7 @@ services:
 volumes:
   minio-data:
   uptime-kuma:
+  sonarqube_data:
 
 networks:
   streamx_net:
