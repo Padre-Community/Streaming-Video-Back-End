@@ -1,4 +1,4 @@
 package api.core.streamx.modules.payment.services;
 
-public class PeymentServices {
+public class PaymentServices {
 }

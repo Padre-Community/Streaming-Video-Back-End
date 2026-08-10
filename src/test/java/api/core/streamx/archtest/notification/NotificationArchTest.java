@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.archtest.notification;
+package api.core.streamx.archtest.notification;
 
 //@AnalyzeClasses(packages = "api.core.streamx.modules.notification", importOptions = ImportOption.DoNotIncludeTests.class)
 public class NotificationArchTest {

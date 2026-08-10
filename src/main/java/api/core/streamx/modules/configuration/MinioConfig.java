@@ -11,7 +11,6 @@ public class MinioConfig {
     MinioClient minioClient() {
         return MinioClient.builder()
                 .endpoint("http://localhost:9002")
-                .credentials("video-max@video-max.com", "video-max@video-max.com")
                 .build();
     }
 }

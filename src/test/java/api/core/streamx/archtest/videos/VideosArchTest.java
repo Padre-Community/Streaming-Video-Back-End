@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.archtest.videos;
+package api.core.streamx.archtest.videos;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -148,11 +148,23 @@ public class VideosArchTest {
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
 
-
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
-            .that().resideInAPackage("..utils..")
-            .should().haveOnlyPrivateConstructors();
+            .that()
+            .resideInAPackage("..utils..")
+            .should()
+            .bePublic()
+            .because("Classe de utilidade deve ser pública e acessível a todos os pacotes");
+
+    @ArchTest
+    static ArchRule utilsMethodTest = ArchRuleDefinition.methods()
+            .that()
+            .arePublic()
+            .and().areDeclaredInClassesThat().resideInAPackage("..utils..")
+            .should()
+            .beStatic()
+            .because("Métodos de utilidade devem ser estáticos e acessíveis a todos os pacotes");
+
 
     //Logs
     @ArchIgnore
