@@ -53,7 +53,19 @@ public class VideosIntegrationTest {
                 .andExpect(jsonPath("$[0].thumbnailUrl").value("http://..."))
                 .andExpect(jsonPath("$[0].durationSeconds").value(600))
                 .andExpect(jsonPath("$[0].viewCount").value(1000L));
+        verify(videosServices).listVideosByCategory(categoryId);
+    }
 
+    @Test
+    void shouldReturnEmptyListWhenCategoryHasNoVideos() throws Exception {
+        Long categoryId = 99L;
+
+        when(videosServices.listVideosByCategory(categoryId)).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/video/category")
+                        .param("category_id", String.valueOf(categoryId)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
 
         verify(videosServices).listVideosByCategory(categoryId);
     }

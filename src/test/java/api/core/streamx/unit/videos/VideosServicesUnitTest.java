@@ -52,4 +52,17 @@ class VideosServicesUnitTest {
 
         verify(videosRepository).findByCategoryId(categoryId);
     }
+
+    @Test
+    void shouldReturnEmptyListWhenCategoryHasNoVideos() {
+        Long categoryId = 99L;
+
+        when(videosRepository.findByCategoryId(categoryId)).thenReturn(List.of());
+
+        List<VideosResponse> resultado = videosServices.listVideosByCategory(categoryId);
+
+        assertThat(resultado).isEmpty();
+
+        verify(videosRepository).findByCategoryId(categoryId);
+    }
 }
