@@ -18,11 +18,11 @@ public class StreamxDocsConfig {
     public OpenAPI customOpenAPI() {
 
         Server release = new Server();
-        release.setUrl("http://localhost:8080/swagger-ui/index.html");
+        release.setUrl("http://localhost:8080");
         release.setDescription("Server de release");
 
         Server production = new Server();
-        production.setUrl("http://localhost:8080/swagger-ui/index.html");
+        production.setUrl("http://localhost:8080");
         production.setDescription("Server de produção");
 
         return new OpenAPI()
