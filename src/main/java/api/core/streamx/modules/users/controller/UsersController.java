@@ -2,6 +2,7 @@ package api.core.streamx.modules.users.controller;
 
 import api.core.streamx.modules.users.dto.request.UsersRequest;
 import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
+import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.services.UsersServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,5 +20,10 @@ public class UsersController {
     public ResponseEntity<UsersResponse> register(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
         UsersRequest request = new UsersRequest(name, email, password);
         return ResponseEntity.status(HttpStatus.CREATED).body(usersServices.registerUser(request));
+    }
+
+    @GetMapping("followers")
+    public ResponseEntity<UserFollowersResponse> followers(@RequestParam Long userID) {
+        return ResponseEntity.ok(usersServices.findFollowers(userID));
     }
 }
