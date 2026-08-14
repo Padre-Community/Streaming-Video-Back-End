@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 @AnalyzeClasses(packages = "api.core.streamx.modules.audit", importOptions = ImportOption.DoNotIncludeTests.class)
-public class AuditArchTest {
+public class AuditResponseArchTest {
 
     @ArchTest
     static ArchRule layerTest = layeredArchitecture()
