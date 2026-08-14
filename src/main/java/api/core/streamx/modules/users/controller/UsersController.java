@@ -1,7 +1,7 @@
 package api.core.streamx.modules.users.controller;
 
 import api.core.streamx.modules.users.dto.request.UsersRequest;
-import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
+import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.services.UsersServices;
 import lombok.RequiredArgsConstructor;

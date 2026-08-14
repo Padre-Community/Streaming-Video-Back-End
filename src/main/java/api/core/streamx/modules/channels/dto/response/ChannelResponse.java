@@ -1,6 +1,6 @@
 package api.core.streamx.modules.channels.dto.response;
 
-import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
+import api.core.streamx.modules.users.dto.response.UsersResponse;
 
 import java.time.LocalDateTime;
 

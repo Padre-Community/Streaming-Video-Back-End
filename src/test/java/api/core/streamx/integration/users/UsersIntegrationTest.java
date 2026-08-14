@@ -1,11 +1,12 @@
 package api.core.streamx.integration.users;
 
 import api.core.streamx.integration.utils.JsonUtils;
+import api.core.streamx.modules.audit.repository.AuditRepository;
 import api.core.streamx.modules.users.controller.UsersController;
 import api.core.streamx.modules.users.dto.request.UsersRequest;
-import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.FollowerResponse;
 import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
+import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.services.UsersServices;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class UsersIntegrationTest {
 
     @MockitoBean
     UsersServices usersServices;
+
+    @MockitoBean
+    AuditRepository auditRepository;
 
     @Test
     void shouldCreateUsersAndReturnCreated() throws Exception {

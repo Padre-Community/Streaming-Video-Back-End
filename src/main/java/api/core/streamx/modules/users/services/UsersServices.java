@@ -2,7 +2,7 @@ package api.core.streamx.modules.users.services;
 
 import api.core.streamx.modules.exception.users.EmailAlreadyExistsException;
 import api.core.streamx.modules.users.dto.request.UsersRequest;
-import api.core.stream_video_backend.modules.users.dto.response.UsersResponse;
+import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.FollowerResponse;
 import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.model.Users;

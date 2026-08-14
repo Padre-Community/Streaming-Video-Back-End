@@ -1,5 +1,6 @@
 package api.core.streamx.integration.videos;
 
+import api.core.streamx.modules.audit.repository.AuditRepository;
 import api.core.streamx.modules.videos.controller.VideosController;
 import api.core.streamx.modules.videos.dto.response.VideosResponse;
 import api.core.streamx.modules.videos.services.VideosServices;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
@@ -26,6 +26,9 @@ public class VideosIntegrationTest {
 
     @MockitoBean
     VideosServices videosServices;
+
+    @MockitoBean
+    AuditRepository auditRepository;
 
     @Test
     void shouldListVideosByCategoryAndReturnOk() throws Exception {
