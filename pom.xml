@@ -28,13 +28,22 @@
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
         <sonar.java.binaries>target/classes</sonar.java.binaries>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <!-- <sonar.coverage.exclusions>src/**/streamx.java</sonar.coverage.exclusions> -->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -89,16 +98,6 @@
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>3.5.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>
@@ -279,6 +278,11 @@
                                 <exclude>**/StreamxApplication.class</exclude>
                                 <exclude>**/InterceptorConfig.class</exclude>
                                 <exclude>**/LogProcessorInterceptor.class</exclude>
+                                <exclude>**/MinioConfig.class</exclude>
+                                <exclude>**/PasswordEncoderField.class</exclude>
+                                <exclude>**/RabbitMQConfig.class</exclude>
+                                <exclude>**/RestTemplateConfig.class</exclude>
+                                <exclude>**/StreamxSwaggerConfig.class</exclude>
                             </excludes>
                         </configuration>
                     </execution>

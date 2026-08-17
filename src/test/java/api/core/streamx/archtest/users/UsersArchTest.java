@@ -68,6 +68,14 @@ public class UsersArchTest {
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
 
+    @ArchIgnore
+    @ArchTest
+    static ArchRule mapperTest = ArchRuleDefinition.classes()
+            .that().resideInAPackage("..mapper..")
+            .should()
+            .bePublic()
+            .because("Classe responsável pelo mapeamento e conversão de dados entre DTO e Model");
+
     //Exception
     @ArchTest
     static ArchRule exceptionTest = ArchRuleDefinition.classes()
@@ -169,4 +177,7 @@ public class UsersArchTest {
 
     @ArchTest
     static ArchRule injectionDependencyTest = GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+
+    @ArchTest
+    static ArchRule genericExceptionsTest = GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS;
 }

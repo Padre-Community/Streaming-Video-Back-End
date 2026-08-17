@@ -1,6 +1,7 @@
 package api.core.streamx.modules.users.services;
 
 import api.core.streamx.modules.exception.users.EmailAlreadyExistsException;
+import api.core.streamx.modules.exception.videos.BusinessException;
 import api.core.streamx.modules.users.dto.request.UsersRequest;
 import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.FollowerResponse;
@@ -47,7 +48,7 @@ public class UsersServices {
     public UserFollowersResponse findFollowers(Long userID) {
 
         Users user = usersRepository.findById(userID)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                                    .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
 
         List<Users> followers = followersRepository.findFollowers(userID);
 
@@ -59,6 +60,5 @@ public class UsersServices {
                 user.getName(),
                 response
         );
-
     }
 }

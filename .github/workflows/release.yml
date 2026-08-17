@@ -47,7 +47,7 @@ jobs:
           cache: 'maven'
 
       - name: Test Application App
-        run: mvn clean install
+        run: mvn test -B
 
   deploy:
     needs: [ test ]

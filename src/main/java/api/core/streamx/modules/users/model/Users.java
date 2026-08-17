@@ -2,6 +2,7 @@ package api.core.streamx.modules.users.model;
 
 import api.core.streamx.modules.channels.model.Channel;
 import api.core.streamx.modules.channels.model.Subscription;
+import api.core.streamx.modules.playlist.model.PlayList;
 import api.core.streamx.modules.videos.model.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

@@ -68,7 +68,7 @@ Pacote raiz: `api.core.streamx.modules.*`
 ### 4.2 Padrão de camadas (imposto via ArchUnit)
 
 Os testes em `src/test/.../archtest/{módulo}/*ArchTest.java` (ex.:
-`VideosArchTest`, `UsersArchTest`, `ChannelsArchTest`, `NotificationArchTest`,
+`VideosArchTest`, `CategoriesArchTest`, `ChannelsArchTest`, `NotificationArchTest`,
 `AuditArchTest`) já **codificam formalmente** a arquitetura em camadas atual, por módulo:
 
 ```mermaid
@@ -401,7 +401,7 @@ conteúdo desses campos exigirão índices GIN futuramente se o volume crescer.
 
 ### ADR-005 — ArchUnit como guarda-corpo arquitetural
 
-**Status**: Aceito e em uso **Decisão**: cada módulo tem seu próprio `*ArchTest` (`UsersArchTest`, `VideosArchTest`,
+**Status**: Aceito e em uso **Decisão**: cada módulo tem seu próprio `*ArchTest` (`CategoriesArchTest`, `VideosArchTest`,
 `ChannelsArchTest`, `NotificationArchTest`, `AuditArchTest`), validando layering, nomenclatura, encapsulamento e
 proibição de field injection. **Próximo passo (proposto neste documento)**: estender essas regras para impor a fronteira
 hexagonal (`domain` não depende de Spring/JPA) conforme a migração da seção 6 avançar módulo a módulo.
