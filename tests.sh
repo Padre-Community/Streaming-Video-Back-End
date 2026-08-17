@@ -12,8 +12,7 @@ set -e
 # ----------------------------------------------------------------------------
 SONAR_PROJECT_KEY="StreamxApplication"
 SONAR_HOST_URL="http://localhost:9003"
-SONAR_TOKEN=sqa_0edad1c0f4f9fef052793672249edb1741530607
-SONARQUBE_PASS="DEVMEN0r13@@"
+SONAR_TOKEN=sqa_8ce482131d02ea0c60fbe51accb1553d5c225cde
 # Cores para output no terminal (melhora a legibilidade)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -81,7 +80,7 @@ run_mutation() {
 run_sonar() {
     log_info "Executando análise estática com SonarQube..."
     # Nota: Certifique-se de que o SonarQube está rodando em http://localhost:9003
-    mvn clean install && mvn verify sonar:sonar -Dsonar.token=sqa_0edad1c0f4f9fef052793672249edb1741530607
+    mvn clean install && mvn verify sonar:sonar -Dsonar.token=sqa_ba4eda23bffa8c827198a7d90c8a571487dd70a3
     log_success "Análise SonarQube enviada com sucesso."
 }
 

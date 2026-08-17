@@ -1,6 +1,5 @@
 package api.core.streamx.modules.users.model;
 
-import api.core.streamx.modules.billing.model.Plan;
 import api.core.streamx.modules.users.enums.StatusUserPlan;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -33,10 +32,5 @@ public class UserPlan implements Serializable {
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private Users user;
-
-    @ManyToOne
-    @JoinColumn(name = "plan_id")
-    @JsonBackReference
-    private Plan plan;
 }
 

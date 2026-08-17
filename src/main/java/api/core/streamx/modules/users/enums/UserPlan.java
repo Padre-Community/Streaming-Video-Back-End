@@ -4,6 +4,8 @@ public enum UserPlan {
 
     FREE,
     STARTER,
-    PROFESSIONAL,
+    STANDARD,
+    ADVANCED,
+    PREMIUM,
     ENTERPRISE
 }

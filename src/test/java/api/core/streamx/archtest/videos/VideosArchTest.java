@@ -1,4 +1,4 @@
-package api.core.stream_video_backend.archtest.videos;
+package api.core.streamx.archtest.videos;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -45,13 +45,11 @@ public class VideosArchTest {
             .andShould().haveSimpleNameEndingWith("Controller")
             .andShould().haveSimpleNameNotEndingWith("RestController");
 
-
     @ArchTest
     static ArchRule controllerDoNotCallRepositoryTest = ArchRuleDefinition.noClasses()
             .that().resideInAPackage("..controller..")
             .should().dependOnClassesThat().resideInAPackage("..repository..")
             .because("Controller não pode chamar diretamente o repository.");
-
 
     @ArchTest
     static ArchRule controllerMethodsTest = ArchRuleDefinition.noMethods()
@@ -66,6 +64,14 @@ public class VideosArchTest {
             .should()
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
+
+    @ArchIgnore
+    @ArchTest
+    static ArchRule mapperTest = ArchRuleDefinition.classes()
+            .that().resideInAPackage("..mapper..")
+            .should()
+            .bePublic()
+            .because("Classe responsável pelo mapeamento e conversão de dados entre DTO e Model");
 
     //Exception
     @ArchTest
@@ -83,6 +89,7 @@ public class VideosArchTest {
             .should().bePublic()
             .because("Metódos Responsáveis por controle e devolutiva de exceção")
             .allowEmptyShould(true);
+
 
     //Model
     @ArchTest
@@ -148,11 +155,23 @@ public class VideosArchTest {
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
 
-
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
-            .that().resideInAPackage("..utils..")
-            .should().haveOnlyPrivateConstructors();
+            .that()
+            .resideInAPackage("..utils..")
+            .should()
+            .bePublic()
+            .because("Classe de utilidade deve ser pública e acessível a todos os pacotes");
+
+    @ArchTest
+    static ArchRule utilsMethodTest = ArchRuleDefinition.methods()
+            .that()
+            .arePublic()
+            .and().areDeclaredInClassesThat().resideInAPackage("..utils..")
+            .should()
+            .beStatic()
+            .because("Métodos de utilidade devem ser estáticos e acessíveis a todos os pacotes");
+
 
     //Logs
     @ArchIgnore
@@ -168,4 +187,7 @@ public class VideosArchTest {
 
     @ArchTest
     static ArchRule injectionDependencyTest = GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+
+    @ArchTest
+    static ArchRule genericExceptionsTest = GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS;
 }

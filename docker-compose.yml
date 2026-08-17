@@ -22,6 +22,16 @@ services:
       - "9003:9000"
     environment:
       SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: true
+      SONARQUBE_JDBC_URL: jdbc:postgresql://streamx-db:5432/${DB_NAME}
+      SONARQUBE_JDBC_USERNAME: ${DB_USERNAME}
+      SONARQUBE_JDBC_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - streamx-db
+    restart: always
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -129,6 +139,9 @@ services:
 volumes:
   minio-data:
   uptime-kuma:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
 
 networks:
   streamx_net:
