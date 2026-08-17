@@ -47,7 +47,7 @@ jobs:
           cache: 'maven'
 
       - name: Test Application App
-        run: mvn clean install
+        run: mvn test && mvn verify -B
 
   deploy:
     needs: [ test ]
@@ -68,13 +68,19 @@ jobs:
         run: ls -lha
 
       - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run:  docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/stream-x .
+        run:  docker build -t ${{ secrets.DOCKER_USERNAME }}/stream-x .
 
       - name: Tag Docker Image
-        run: docker tag ${{ secrets.DOCKER_USERNAME }}/stream-x ${{ secrets.DOCKER_USERNAME }}/stream-x:production
+        run:  docker tag ${{ secrets.DOCKER_USERNAME }}/stream-x ${{ secrets.DOCKER_USERNAME }}/stream-x:production
+
+      - name: Scanner Docker CVE
+        run:  docker scout cves --only-severity critical,high ${{ secrets.DOCKER_USERNAME }}/stream-x:production
+
+      - name: Docker Scout Recommendations
+        run:  docker scout recommendations --tag stream-x:release
 
       - name: Publish Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/stream-x:production
+        run:  docker push ${{ secrets.DOCKER_USERNAME }}/stream-x:production

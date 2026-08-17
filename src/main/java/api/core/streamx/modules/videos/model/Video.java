@@ -1,6 +1,8 @@
 package api.core.streamx.modules.videos.model;
 
+import api.core.streamx.modules.categories.model.Category;
 import api.core.streamx.modules.channels.model.Channel;
+import api.core.streamx.modules.playlist.model.PlayList;
 import api.core.streamx.modules.users.model.Users;
 import api.core.streamx.modules.videos.enums.StatusVideo;
 import api.core.streamx.modules.videos.enums.Visibility;

@@ -18,9 +18,16 @@ public class VideosController {
 
     private final VideosServices videosServices;
 
-    @GetMapping("/category")
+    @GetMapping(path = "/category")
     public ResponseEntity<List<VideosResponse>> listVideosByCategory(@RequestParam(name = "category_id") Long categoryId) {
         return ResponseEntity.ok(videosServices.listVideosByCategory(categoryId));
+    }
+
+    @GetMapping(path = "")
+    public ResponseEntity<?> fetchVideosByCategory(String categoryName) {
+        // Implementation Caller here
+        // { "category": "Category Name", "videos": [ { "video1", "video2", "video3" } ] }
+        return null;
     }
 
 }

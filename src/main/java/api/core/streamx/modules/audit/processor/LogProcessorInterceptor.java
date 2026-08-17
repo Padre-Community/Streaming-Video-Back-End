@@ -23,14 +23,20 @@ public class LogProcessorInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 
-        AuditRequest auditRequest = new AuditRequest(request.getMethod(), request.getRequestURI()
-                , response.getStatus(), HttpStatus.valueOf(response.getStatus()).name(), new Date().toString());
+        AuditRequest auditRequest = new AuditRequest(request.getMethod(),
+                                                     request.getRequestURI(),
+                                                     response.getStatus(),
+                                                     HttpStatus.valueOf(response.getStatus()).name(),
+                                                     new Date().toString());
 
-        Audit audit = new Audit(null, auditRequest.method(), auditRequest.uri(),
-                auditRequest.codeStatus(), auditRequest.httpStatus(), auditRequest.timeStamp());
+        Audit audit = Audit.builder()
+                           .method(auditRequest.method())
+                           .uri(auditRequest.uri())
+                           .codeStatus(auditRequest.codeStatus())
+                           .httpStatus(auditRequest.httpStatus())
+                           .timeStamp(auditRequest.timeStamp())
+                           .build();
 
         auditRepository.save(audit);
     }
-
-
 }

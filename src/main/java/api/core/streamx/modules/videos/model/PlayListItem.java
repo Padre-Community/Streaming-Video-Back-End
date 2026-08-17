@@ -1,5 +1,6 @@
 package api.core.streamx.modules.videos.model;
 
+import api.core.streamx.modules.playlist.model.PlayList;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
