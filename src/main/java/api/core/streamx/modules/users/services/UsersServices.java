@@ -53,12 +53,9 @@ public class UsersServices {
         List<Users> followers = followersRepository.findFollowers(userID);
 
         List<FollowerResponse> response = followers.stream()
-                .map(f -> new FollowerResponse(f.getName()))
-                .toList();
+                                                   .map(f -> new FollowerResponse(f.getName()))
+                                                   .toList();
 
-        return new UserFollowersResponse(
-                user.getName(),
-                response
-        );
+        return new UserFollowersResponse(user.getName(), response);
     }
 }
