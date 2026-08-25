@@ -1,6 +1,7 @@
 package api.core.streamx.modules.users.controller;
 
 import api.core.streamx.modules.users.dto.request.UsersRequest;
+import api.core.streamx.modules.users.dto.response.ListUserFollowersResponse;
 import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.services.UsersServices;
@@ -25,5 +26,12 @@ public class UsersController {
     @GetMapping("followers")
     public ResponseEntity<UserFollowersResponse> followers(@RequestParam Long userID) {
         return ResponseEntity.ok(usersServices.findFollowers(userID));
+    }
+
+    @PostMapping(path = "/users/follow")
+    public ResponseEntity<ListUserFollowersResponse> userFollow(@RequestParam(value = "id")         Long userID,
+                                                                @RequestParam(value = "followerID") Long followerID) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(usersServices.follow(userID, followerID));
     }
 }

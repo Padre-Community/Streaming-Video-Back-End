@@ -4,6 +4,7 @@ import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.model.Users;
 import api.core.streamx.modules.users.repository.FollowersRepository;
 import api.core.streamx.modules.users.repository.UsersRepository;
+import api.core.streamx.modules.users.services.UserServicesImpl;
 import api.core.streamx.modules.users.services.UsersServices;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +31,7 @@ public class UsersUnitTest {
     private PasswordEncoder passwordEncoder;
 
     @InjectMocks
-    private UsersServices usersServices;
+    private UserServicesImpl usersServices;
 
     @Test
     void ShouldReturnUserFollowers() {

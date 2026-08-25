@@ -30,12 +30,14 @@ public class PlaylistArchTest {
     static ArchRule layerTest = layeredArchitecture()
             .consideringAllDependencies()
             .layer("Controller").definedBy("..controller..")
-            .layer("Services").definedBy("..services..")
+            .layer("Service").definedBy("..services..")
+            .layer("Validation").definedBy("..utils..")
             .layer("Repository").definedBy("..repository..")
 
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
-            .whereLayer("Services").mayOnlyBeAccessedByLayers("Controller")
-            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Services");
+            .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
+            .whereLayer("Validation").mayOnlyBeAccessedByLayers("Service")
+            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Validation");
 
     //Controller
     @ArchTest
@@ -138,12 +140,15 @@ public class PlaylistArchTest {
     @ArchTest
     static ArchRule servicesTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..services..")
-            .should().beAnnotatedWith(Service.class);
+            .should().beAnnotatedWith(Service.class)
+            .orShould().beAnnotatedWith(Component.class)
+            .orShould().beInterfaces()
+            .because("Classe de serviço, deve ser anotada com @Service para ser gerenciada pelo Spring");
 
     @ArchTest
     static ArchRule serviceNameHaveBeenFinallyService = ArchRuleDefinition.classes()
             .that().areAnnotatedWith(Service.class)
-            .should().haveSimpleNameEndingWith("Services");
+            .should().haveSimpleNameEndingWith("ServicesImpl");
 
     @ArchTest
     static ArchRule serviceFieldsHasBeenPrivate = ArchRuleDefinition.fields()

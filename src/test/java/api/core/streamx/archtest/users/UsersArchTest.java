@@ -30,12 +30,14 @@ public class UsersArchTest {
     static ArchRule layerTest = layeredArchitecture()
             .consideringAllDependencies()
             .layer("Controller").definedBy("..controller..")
-            .layer("Services").definedBy("..services..")
+            .layer("Service").definedBy("..services..")
+            .layer("Validation").definedBy("..utils..")
             .layer("Repository").definedBy("..repository..")
 
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
-            .whereLayer("Services").mayOnlyBeAccessedByLayers("Controller")
-            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Services");
+            .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
+            .whereLayer("Validation").mayOnlyBeAccessedByLayers("Service")
+            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Validation");
 
     //Controller
     @ArchTest
@@ -63,7 +65,7 @@ public class UsersArchTest {
     @ArchTest
     static ArchRule dtoTest = ArchRuleDefinition.classes()
             .that()
-            .resideInAnyPackage("..dto..","..request..", "..response..")
+            .resideInAnyPackage("..dto..", "..request..", "..response..")
             .should()
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
@@ -138,12 +140,15 @@ public class UsersArchTest {
     @ArchTest
     static ArchRule servicesTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..services..")
-            .should().beAnnotatedWith(Service.class);
+            .should().beAnnotatedWith(Service.class)
+            .orShould().beAnnotatedWith(Component.class)
+            .orShould().beInterfaces()
+            .because("Classe de serviço, deve ser anotada com @Service para ser gerenciada pelo Spring");
 
     @ArchTest
-    static ArchRule serviceNameHaveBeenFinallyService = ArchRuleDefinition.classes()
+    static ArchRule serviceNameHaveBeenFinallyServiceImpl = ArchRuleDefinition.classes()
             .that().areAnnotatedWith(Service.class)
-            .should().haveSimpleNameEndingWith("Services");
+            .should().haveSimpleNameEndingWith("ServicesImpl");
 
     @ArchTest
     static ArchRule serviceFieldsHasBeenPrivate = ArchRuleDefinition.fields()
@@ -161,7 +166,10 @@ public class UsersArchTest {
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..utils..")
-            .should().haveOnlyPrivateConstructors();
+            .should().beAnnotatedWith(Component.class)
+            .orShould()
+            .beInterfaces()
+            .because("Classe de validação de regras de negócio, deve ser anotada com @Component para ser gerenciada pelo Spring");
 
     //Logs
     @ArchIgnore

@@ -1,12 +1,19 @@
 package api.core.streamx.modules.categories.services;
 
-import api.core.streamx.modules.playlist.repository.PlayListRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import api.core.streamx.modules.videos.dto.response.CategoryResponse;
 
-@RequiredArgsConstructor
-@Service
-public class CategoryServices {
+import java.util.List;
 
-    private final PlayListRepository repository;
+
+public interface CategoryServices {
+
+    CategoryResponse createCategory(String categoryName);
+
+    CategoryResponse updateCategory(Long categoryId, String categoryName);
+
+    void deleteCategory(Long categoryId);
+
+    void deleteCategory(String categoryName);
+
+    List<CategoryResponse> getAllCategories();
 }

@@ -1,7 +1,7 @@
-package api.core.streamx.archtest.notification;
+package api.core.streamx.archtest.reaction;
 
-//@AnalyzeClasses(packages = "api.core.streamx.modules.notification", importOptions = ImportOption.DoNotIncludeTests.class)
-public class NotificationArchTest {
+//@AnalyzeClasses(packages = "api.core.streamx.modules.reaction", importOptions = ImportOption.DoNotIncludeTests.class)
+public class ReactionArchTest {
 /*
     //Layer
     @ArchTest
@@ -42,10 +42,19 @@ public class NotificationArchTest {
     //DTO
     @ArchTest
     static ArchRule dtoTest = ArchRuleDefinition.classes()
-            .that().resideInAPackage("..dto..")
+            .that()
+            .resideInAnyPackage("..dto..", "..request..", "..response..")
             .should()
             .beRecords()
             .because("Classe responsável pela transferência de dados entre cliente e camada de modelo");
+
+    @ArchIgnore
+    @ArchTest
+    static ArchRule mapperTest = ArchRuleDefinition.classes()
+            .that().resideInAPackage("..mapper..")
+            .should()
+            .bePublic()
+            .because("Classe responsável pelo mapeamento e conversão de dados entre DTO e Model");
 
     //Exception
     @ArchTest
@@ -109,10 +118,13 @@ public class NotificationArchTest {
     @ArchTest
     static ArchRule servicesTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..services..")
-            .should().beAnnotatedWith(Service.class);
+            .should().beAnnotatedWith(Service.class)
+            .orShould().beAnnotatedWith(Component.class)
+            .orShould().beInterfaces()
+            .because("Classe de serviço, deve ser anotada com @Service para ser gerenciada pelo Spring");
 
     @ArchTest
-    static ArchRule serviceNameHaveBeenFinallyService = ArchRuleDefinition.classes()
+    static ArchRule serviceNameHaveBeenFinallyServiceImpl = ArchRuleDefinition.classes()
             .that().areAnnotatedWith(Service.class)
             .should().haveSimpleNameEndingWith("ServicesImpl");
 
@@ -129,28 +141,22 @@ public class NotificationArchTest {
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
 
-    //Utils
-    @ArchIgnore
-    @ArchTest
-    static ArchRule utilsValidateParameterTest = ArchRuleDefinition.classes()
-            .that().resideInAPackage("..utils..")
-            .should().haveSimpleName("ValidateParameter")
-            .because("Classe utilitária para conversão de tipo String/Long e seu tratamento em caso de erro");
-
-
     @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..utils..")
-            .should().haveOnlyPrivateConstructors();
+            .should().beAnnotatedWith(Component.class)
+            .orShould()
+            .beInterfaces()
+            .because("Classe de validação de regras de negócio, deve ser anotada com @Component para ser gerenciada pelo Spring");
 
     //Logs
+    @ArchIgnore
     @ArchTest
     static ArchRule logTest = ArchRuleDefinition.fields()
             .that().haveRawType(Logger.class)
             .should().bePrivate()
             .andShould().beStatic()
-            .andShould().beFinal()
-            .allowEmptyShould(true);
+            .andShould().beFinal();
 
     @ArchTest
     static ArchRule log2Test = GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
@@ -159,6 +165,5 @@ public class NotificationArchTest {
     static ArchRule injectionDependencyTest = GeneralCodingRules.NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
 
     @ArchTest
-    static ArchRule genericExceptionsTest = GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS;
-    */
+    static ArchRule genericExceptionsTest = GeneralCodingRules.NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS; */
 }
