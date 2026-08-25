@@ -1,4 +1,4 @@
 package api.core.streamx.modules.playlist.dto.response;
 
-public record PlaylistResponse() {
+public record PlayListResponse() {
 }

@@ -1,5 +1,6 @@
 package api.core.streamx.modules.videos.controller;
 
+import api.core.streamx.modules.analytics.services.AnalyticsService;
 import api.core.streamx.modules.videos.dto.response.VideosResponse;
 import api.core.streamx.modules.videos.services.VideosServices;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class VideosController {
 
     @GetMapping(path = "/category")
     public ResponseEntity<List<VideosResponse>> listVideosByCategory(@RequestParam(name = "category_id") Long categoryId) {
-        return ResponseEntity.ok(videosServices.listVideosByCategory(categoryId));
+        return ResponseEntity.ok(videosServices.findVideosByCategory(categoryId));
     }
 
     @GetMapping(path = "")
