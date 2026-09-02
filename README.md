@@ -73,7 +73,7 @@
 - [GIT](docs/GIT.md)
 - [Docker](docs/DOCKER.md)
 - [IntelliJ](docs/INTELLIJ.md)
-- [Comandos GIT](docs/COMMANDS_GIT.md)
+- [Comandos GIT](../Financial%20Management%20API/docs/COMMANDS_GIT.md)
 - [Comandos Maven](docs/COMMANDS_MAVEN.md)
 - [Start Environment](docs/START_ENVIRONMENT.md)
 
