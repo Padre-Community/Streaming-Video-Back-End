@@ -4,16 +4,13 @@ import api.core.streamx.modules.exception.videos.PlaylistNotFoundException;
 import api.core.streamx.modules.videos.dto.response.PlaylistResponse;
 import api.core.streamx.modules.videos.model.PlayList;
 import api.core.streamx.modules.videos.repository.PlayListRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class PlayListServices {
-    PlayListRepository playListRepository;
-
-    public PlayListServices(PlayListRepository playListRepository) {
-        this.playListRepository = playListRepository;
-    }
-
+    private final PlayListRepository playListRepository;
 
     public PlaylistResponse atualizarNome(Long id, String nome) {
         PlayList playList = playListRepository.findById(id)

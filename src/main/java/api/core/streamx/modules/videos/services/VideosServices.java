@@ -13,6 +13,7 @@ import java.util.List;
 public class VideosServices {
 
     private final VideosRepository videosRepository;
+
     public List<VideosResponse> listVideosByCategory(Long categoryId) {
         List<Video> videos = videosRepository.findByCategoryId(categoryId);
         return  videos.stream()
