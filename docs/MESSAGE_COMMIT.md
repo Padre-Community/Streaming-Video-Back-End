@@ -21,14 +21,14 @@
 
 **``PS: Adiciona emojis no início do assunto para identificar visualmente a intenção do commit``**
 
-| Tipo      | Emoji | Text Tag    | Finalidade                                      |
-|-----------|-------|-------------|-------------------------------------------------|
-| `feat`    | 🚀    | :rocket:    | Adiciona uma nova funcionalidade                |
-| `fix`     | 🐛    | :bug:       | Corrigir um bug                                 |
-| `refactor`| ♻️    | :recycle:   | Reescrever código sem alterar comportamento     |
-| `perf`    | ⚡     | :zap:       | Melhorar desempenho do Código                   |
-| `style`   | 💄    | :lipstick:  | Ajustar estilo e/ou formatação do código        |
-| `test`    | 🧪    | :test_tube: | Construção de testes                            |
-| `docs`    | 📝    | :docs:      | Adiciona ou corrigir documentação               |
-| `build`   | 📦    | :package:   | Alterar dependências ou configurações de build  |
-| `ci`      | 🧱    | :bricks:    | Ajustar script ou configuração de CI            |
+| Tipo       | Emoji | Text Tag         | Finalidade                                     |
+|------------|-------|------------------|------------------------------------------------|
+| `feat`     | 🚀    | :rocket:         | Adiciona uma nova funcionalidade               |
+| `fix`      | 🐛    | :bug:            | Corrigir um bug                                |
+| `refactor` | ♻️    | :recycle:        | Reescrever código sem alterar comportamento    |
+| `perf`     | ⚡    | :zap:            | Melhorar desempenho do Código                  |
+| `style`    | 💄    | :lipstick:       | Ajustar estilo e/ou formatação do código       |
+| `test`     | 🧪    | :test_tube:      | Construção de testes                           |
+| `docs`     | 📝    | :page_facing_up: | Adiciona ou corrigir documentação              |
+| `build`    | 📦    | :package:        | Alterar dependências ou configurações de build |
+| `ci`       | 🧱    | :bricks:         | Ajustar script ou configuração de CI           |

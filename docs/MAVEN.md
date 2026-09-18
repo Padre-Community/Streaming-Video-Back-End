@@ -3,7 +3,7 @@
  <img src="https://img.shields.io/static/v1?label=STATUS&message=DEVELOPMENT&color=00ab4e&labelColor=90876I" alt="Status"/>
 </p>
 
-> > ## Instalação Maven Windows 11
+> ## Instalação Maven Windows 11
 
 **Primeiramente, realize o download do Maven**
 

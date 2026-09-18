@@ -1,4 +1,8 @@
-> # Aplicação de Streaming Video Max da Padre Community 🚀
+<p align="center">
+ <img src="https://img.shields.io/static/v1?label=STATUS&message=DEVELOPMENT&color=00ab4e&labelColor=90876I" alt="Status"/>
+</p>
+
+> # Aplicação de Streaming StreamX da Padre Community 🚀
 ---
 
 > ## Descrição do Projeto
@@ -60,7 +64,7 @@
 >
 > - [GIT](https://git-scm.com/downloads)
 
-> ## Instrução de Configuração e Instação
+> ## Instrução de Configuração e Instalação
 ---
 
 **Guia de Documentação com Instruções para Configuração do Ambiente de Desenvolvimento**
@@ -69,11 +73,17 @@
 - [GIT](docs/GIT.md)
 - [Docker](docs/DOCKER.md)
 - [IntelliJ](docs/INTELLIJ.md)
-- [Commandos GIT](docs/COMMANDS_GIT.md)
-- [Commandos Maven](docs/COMMANDS_MAVEN.md)
+- [Comandos GIT](docs/COMMANDS_GIT.md)
+- [Comandos Maven](docs/COMMANDS_MAVEN.md)
+- [Start Environment](docs/START_ENVIRONMENT.md)
 
 > ## Executor
 ---
+
+- **Após instalar o Docker, execute o comando abaixo:**
+```bash
+   docker-compose up -d
+```
 
 - **Clonar repositório `GITHUB`**
 ```bash

