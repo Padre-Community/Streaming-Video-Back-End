@@ -80,7 +80,7 @@ jobs:
         run:  docker scout cves --only-severity critical,high ${{ secrets.DOCKER_USERNAME }}/stream-x:production
 
       - name: Docker Scout Recommendations
-        run:  docker scout recommendations --tag stream-x:release
+        run:  docker scout recommendations --tag stream-x:production
 
       - name: Publish Docker Image
         run:  docker push ${{ secrets.DOCKER_USERNAME }}/stream-x:production

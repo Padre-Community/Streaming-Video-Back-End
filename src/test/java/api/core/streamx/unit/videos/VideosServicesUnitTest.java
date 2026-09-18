@@ -3,7 +3,7 @@ package api.core.streamx.unit.videos;
 import api.core.streamx.modules.videos.dto.response.VideosResponse;
 import api.core.streamx.modules.videos.model.Video;
 import api.core.streamx.modules.videos.repository.VideosRepository;
-import api.core.streamx.modules.videos.services.VideosServices;
+import api.core.streamx.modules.videos.services.VideoServicesImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +23,7 @@ class VideosServicesUnitTest {
     VideosRepository videosRepository;
 
     @InjectMocks
-    VideosServices videosServices;
+    VideoServicesImpl videoServices;
 
     @Test
     void shouldReturnMappedVideosWhenCategoryHasVideos() {
@@ -40,10 +40,9 @@ class VideosServicesUnitTest {
 
         when(videosRepository.findByCategoryId(categoryId)).thenReturn(List.of(video));
 
-        List<VideosResponse> resultado = videosServices.listVideosByCategory(categoryId);
+        List<VideosResponse> resultado = videoServices.findVideosByCategory(categoryId);
 
         assertThat(resultado).hasSize(1);
-        assertThat(resultado.get(0).id()).isEqualTo(1L);
         assertThat(resultado.get(0).channelName()).isEqualTo("Canal Teste");
         assertThat(resultado.get(0).title()).isEqualTo("Vídeo Teste");
         assertThat(resultado.get(0).thumbnailUrl()).isEqualTo("http://...");
@@ -59,7 +58,7 @@ class VideosServicesUnitTest {
 
         when(videosRepository.findByCategoryId(categoryId)).thenReturn(List.of());
 
-        List<VideosResponse> resultado = videosServices.listVideosByCategory(categoryId);
+        List<VideosResponse> resultado = videoServices.findVideosByCategory(categoryId);
 
         assertThat(resultado).isEmpty();
 

@@ -3,6 +3,7 @@ package api.core.streamx.integration.videos;
 import api.core.streamx.modules.audit.repository.AuditRepository;
 import api.core.streamx.modules.videos.controller.VideosController;
 import api.core.streamx.modules.videos.dto.response.VideosResponse;
+import api.core.streamx.modules.videos.services.VideoServicesImpl;
 import api.core.streamx.modules.videos.services.VideosServices;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class VideosIntegrationTest {
     MockMvc mockMvc;
 
     @MockitoBean
-    VideosServices videosServices;
+    VideoServicesImpl videosServices;
 
     @MockitoBean
     AuditRepository auditRepository;
@@ -35,7 +36,6 @@ public class VideosIntegrationTest {
         Long categoryId = 1L;
 
         VideosResponse videoFalso = new VideosResponse(
-                1L,
                 "Canal Teste",
                 "Vídeo Teste",
                 "http://...",
@@ -45,31 +45,30 @@ public class VideosIntegrationTest {
 
         List<VideosResponse> listaFalsa = List.of(videoFalso);
 
-        when(videosServices.listVideosByCategory(categoryId)).thenReturn(listaFalsa);
+        when(videosServices.findVideosByCategory(categoryId)).thenReturn(listaFalsa);
 
         mockMvc.perform(get("/api/video/category")
                         .param("category_id", String.valueOf(categoryId)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(1L))
                 .andExpect(jsonPath("$[0].channelName").value("Canal Teste"))
                 .andExpect(jsonPath("$[0].title").value("Vídeo Teste"))
                 .andExpect(jsonPath("$[0].thumbnailUrl").value("http://..."))
                 .andExpect(jsonPath("$[0].durationSeconds").value(600))
                 .andExpect(jsonPath("$[0].viewCount").value(1000L));
-        verify(videosServices).listVideosByCategory(categoryId);
+        verify(videosServices).findVideosByCategory(categoryId);
     }
 
     @Test
     void shouldReturnEmptyListWhenCategoryHasNoVideos() throws Exception {
         Long categoryId = 99L;
 
-        when(videosServices.listVideosByCategory(categoryId)).thenReturn(List.of());
+        when(videosServices.findVideosByCategory(categoryId)).thenReturn(List.of());
 
         mockMvc.perform(get("/api/video/category")
                         .param("category_id", String.valueOf(categoryId)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
 
-        verify(videosServices).listVideosByCategory(categoryId);
+        verify(videosServices).findVideosByCategory(categoryId);
     }
 }

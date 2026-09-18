@@ -8,12 +8,14 @@ public class ChannelsArchTest {
     static ArchRule layerTest = layeredArchitecture()
             .consideringAllDependencies()
             .layer("Controller").definedBy("..controller..")
-            .layer("Services").definedBy("..services..")
+            .layer("Service").definedBy("..services..")
+            .layer("Validation").definedBy("..utils..")
             .layer("Repository").definedBy("..repository..")
 
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
-            .whereLayer("Services").mayOnlyBeAccessedByLayers("Controller")
-            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Services");
+            .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
+            .whereLayer("Validation").mayOnlyBeAccessedByLayers("Service")
+            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Validation");
 
     //Controller
     @ArchTest
@@ -112,7 +114,7 @@ public class ChannelsArchTest {
     @ArchTest
     static ArchRule serviceNameHaveBeenFinallyService = ArchRuleDefinition.classes()
             .that().areAnnotatedWith(Service.class)
-            .should().haveSimpleNameEndingWith("Services");
+            .should().haveSimpleNameEndingWith("ServicesImpl");
 
     @ArchTest
     static ArchRule serviceFieldsHasBeenPrivate = ArchRuleDefinition.fields()
