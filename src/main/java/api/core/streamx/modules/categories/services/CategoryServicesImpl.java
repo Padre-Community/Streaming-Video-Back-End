@@ -1,10 +1,15 @@
 package api.core.streamx.modules.categories.services;
 
+import api.core.streamx.modules.categories.dto.response.CategoryResponse;
+import api.core.streamx.modules.categories.model.Category;
 import api.core.streamx.modules.categories.repository.CategoryRepository;
-import api.core.streamx.modules.videos.dto.response.CategoryResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -34,7 +39,13 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public List<CategoryResponse> getAllCategories() {
-        return List.of();
+    public List<CategoryResponse> getAllCategories(Pageable pageable) {
+
+        Page<Category> categoryEntity =  categoryRepository.findAll(pageable);
+
+        List<CategoryResponse> CategoryDto = categoryEntity.map(category ->
+                new CategoryResponse(category.getId(), category.getCategoryName())).getContent();
+
+        return CategoryDto;
     }
 }
