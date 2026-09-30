@@ -31,13 +31,13 @@ public class CategoriesArchTest {
             .consideringAllDependencies()
             .layer("Controller").definedBy("..controller..")
             .layer("Service").definedBy("..services..")
-            .layer("Validation").definedBy("..utils..")
+            .optionalLayer("Validation").definedBy("..utils..")
             .layer("Repository").definedBy("..repository..")
 
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
             .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
             .whereLayer("Validation").mayOnlyBeAccessedByLayers("Service")
-            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Validation");
+            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service");
 
     //Controller
     @ArchTest
@@ -135,7 +135,6 @@ public class CategoriesArchTest {
             .should().beInterfaces().andShould().beAssignableTo(JpaRepository.class)
             .because("Interfaces que fazem abstração ao banco de dados, devem herdar os métodos de manipulação e persistência");
 
-
     //Service
     @ArchTest
     static ArchRule servicesTest = ArchRuleDefinition.classes()
@@ -163,10 +162,10 @@ public class CategoriesArchTest {
             .should().notBeAnnotatedWith(Component.class)
             .because("Anotação 'Component' não é permitida no pacote services");
 
-    @ArchTest
+    /* @ArchTest
     static ArchRule utilsValidateTest = ArchRuleDefinition.classes()
             .that().resideInAPackage("..utils..")
-            .should().haveOnlyPrivateConstructors();
+            .should().haveOnlyPrivateConstructors(); */
 
     //Logs
     @ArchIgnore

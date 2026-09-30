@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping(path = "/api")
 public class AnalyticsController {
 
     private final AnalyticsService analyticsService;

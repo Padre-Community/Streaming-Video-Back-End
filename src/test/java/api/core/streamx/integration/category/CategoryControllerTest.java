@@ -1,4 +1,4 @@
-package api.core.streamx.integration.Category;
+package api.core.streamx.integration.category;
 
 import api.core.streamx.modules.audit.repository.AuditRepository;
 import api.core.streamx.modules.categories.controller.CategoryController;
@@ -36,8 +36,6 @@ public class CategoryControllerTest{
 
     @MockitoBean
     private CategoryServicesImpl categoryServices;
-
-
 
     @Test
     public void shouldReturnSucesWhenListingCategories() throws Exception {

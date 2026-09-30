@@ -5,9 +5,7 @@ import api.core.streamx.modules.categories.model.Category;
 import api.core.streamx.modules.categories.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 
-
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -29,23 +27,17 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public void deleteCategory(Long categoryId) {
-
-    }
+    public void deleteCategory(Long categoryId) {}
 
     @Override
-    public void deleteCategory(String categoryName) {
-
-    }
+    public void deleteCategory(String categoryName) {}
 
     @Override
     public List<CategoryResponse> getAllCategories(Pageable pageable) {
 
         Page<Category> categoryEntity =  categoryRepository.findAll(pageable);
 
-        List<CategoryResponse> CategoryDto = categoryEntity.map(category ->
-                new CategoryResponse(category.getId(), category.getCategoryName())).getContent();
-
-        return CategoryDto;
+        return categoryEntity.map(category -> new CategoryResponse(category.getId(), category.getCategoryName()))
+                             .getContent();
     }
 }
