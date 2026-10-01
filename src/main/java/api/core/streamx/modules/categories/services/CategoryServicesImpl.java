@@ -1,10 +1,13 @@
 package api.core.streamx.modules.categories.services;
 
+import api.core.streamx.modules.categories.dto.response.CategoryResponse;
+import api.core.streamx.modules.categories.model.Category;
 import api.core.streamx.modules.categories.repository.CategoryRepository;
-import api.core.streamx.modules.videos.dto.response.CategoryResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,17 +27,17 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public void deleteCategory(Long categoryId) {
-
-    }
+    public void deleteCategory(Long categoryId) {}
 
     @Override
-    public void deleteCategory(String categoryName) {
-
-    }
+    public void deleteCategory(String categoryName) {}
 
     @Override
-    public List<CategoryResponse> getAllCategories() {
-        return List.of();
+    public List<CategoryResponse> getAllCategories(Pageable pageable) {
+
+        Page<Category> categoryEntity =  categoryRepository.findAll(pageable);
+
+        return categoryEntity.map(category -> new CategoryResponse(category.getId(), category.getCategoryName()))
+                             .getContent();
     }
 }
