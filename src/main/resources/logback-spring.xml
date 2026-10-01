@@ -3,7 +3,6 @@
         <destination>localhost:5000</destination>  <!-- 🔹 Logstash -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
-
     <root level="info">
         <appender-ref ref="LOGSTASH"/>
     </root>
