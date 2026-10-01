@@ -26,4 +26,4 @@ COPY --from=builder /app/target/*.jar stream-x.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "stream-x.jar"]
+ENTRYPOINT ["java", "-Xmx380m", "-Xms380m", "-jar", "stream-x.jar"]
