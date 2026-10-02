@@ -136,41 +136,6 @@ services:
       - minio-data:/data
     command: server /data --console-address ":9001"
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
-    container_name: elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    networks:
-      - streamx_net
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.5.3
-    container_name: kibana
-    networks:
-      - streamx_net
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.5.3
-    container_name: logstash
-    networks:
-      - streamx_net
-    volumes:
-      - ./logstash/pipeline:/usr/share/logstash/pipeline
-    ports:
-      - "5000:5000"
-      - "9600:9600"
-    depends_on:
-      - elasticsearch
-
 volumes:
   minio-data:
   uptime-kuma:
