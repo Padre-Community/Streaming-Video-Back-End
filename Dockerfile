@@ -16,7 +16,7 @@ RUN apk update && apk upgrade --no-cache
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-USER streamxuser
+USER appuser
 
 LABEL key="app.stream-x"
 
