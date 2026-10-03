@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/api/categories")
@@ -23,8 +21,6 @@ public class CategoryController {
         // { "category": "Category Name" }
         return null;
     }
-
-
 
     @GetMapping
     public List<CategoryResponse> fetchCategory(@RequestParam(value = "page", defaultValue = "0") int page,
