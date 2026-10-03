@@ -38,7 +38,7 @@ public class CategoryControllerTest{
     private CategoryServicesImpl categoryServices;
 
     @Test
-    public void shouldReturnSucesWhenListingCategories() throws Exception {
+    public void shouldReturnSuccessWhenListingCategories() throws Exception {
 
         Pageable pageable = PageRequest.of(0, 10);
 

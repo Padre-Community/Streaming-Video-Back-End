@@ -18,11 +18,16 @@ public class StreamxSwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI(@Value("${app.public-url}") String publicUrl) {
         Server production = new Server();
+        Server local = new Server();
+
+        local.setUrl("http://localhost:8080");
+        local.setDescription("Servidor local para desenvolvimento");
+
         production.setUrl(publicUrl);
         production.setDescription("Servidor da aplicação");
 
         return new OpenAPI()
-                .servers(List.of(production))
+                .servers(List.of(local, production))
                 .info(new Info()
                         .title("Aplicação de Streaming Video StreamX da Padre Community")
                         .description("""

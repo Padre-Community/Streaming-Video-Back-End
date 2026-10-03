@@ -19,20 +19,20 @@ public class UsersController {
 
     private final UsersServices usersServices;
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<UsersResponse> register(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
         UsersRequest request = new UsersRequest(name, email, password);
         log.info("Registering user with name: {}, email: {}", name, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(usersServices.registerUser(request));
     }
 
-    @GetMapping("/followers")
+    @GetMapping(value = "/followers")
     public ResponseEntity<UserFollowersResponse> followers(@RequestParam Long userID) {
         log.info("Followers requested by userID: {}", userID);
         return ResponseEntity.ok(usersServices.findFollowers(userID));
     }
 
-    @PostMapping(path = "/users/follow")
+    @PostMapping(value = "/users/follow")
     public ResponseEntity<ListUserFollowersResponse> userFollow(@RequestParam(value = "id")         Long userID,
                                                                 @RequestParam(value = "followerID") Long followerID) {
 
