@@ -1,21 +1,45 @@
 package api.core.streamx.modules.categories.services;
 
+import api.core.streamx.modules.categories.dto.request.CategoryRequest;
+import api.core.streamx.modules.categories.dto.response.CategoryResponse;
+import api.core.streamx.modules.categories.model.Category;
 import api.core.streamx.modules.categories.repository.CategoryRepository;
-import api.core.streamx.modules.videos.dto.response.CategoryResponse;
+import api.core.streamx.modules.categories.utils.ExistingCategoryValidation;
+import api.core.streamx.modules.categories.utils.ValidationNameCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class CategoryServicesImpl implements CategoryServices {
 
+    private final ValidationNameCategory validationNameCategory;
+    private final ExistingCategoryValidation existingCategoryValidation;
     private final CategoryRepository categoryRepository;
 
     @Override
-    public CategoryResponse createCategory(String categoryName) {
-        return null;
+    public CategoryResponse createCategory(CategoryRequest request) {
+
+        String formattedCategoryName = request.name() //Se eu criar um metodo para converter o request em uma String formatada.
+                .strip()
+                .replaceAll("\\s+", " ")// Replaces any sequence of two or more whitespace characters with a single space.
+                .toLowerCase();
+
+        validationNameCategory.validate(formattedCategoryName);
+
+        existingCategoryValidation.validate(formattedCategoryName);
+
+        Category category = Category.builder()
+                .categoryName(formattedCategoryName)
+                .build();
+
+
+        Category save = categoryRepository.save(category);
+
+
+        return new CategoryResponse(save.getCategoryName());
     }
 
     @Override
