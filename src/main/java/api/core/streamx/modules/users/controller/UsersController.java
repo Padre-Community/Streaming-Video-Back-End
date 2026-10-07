@@ -6,10 +6,13 @@ import api.core.streamx.modules.users.dto.response.UsersResponse;
 import api.core.streamx.modules.users.dto.response.UserFollowersResponse;
 import api.core.streamx.modules.users.services.UsersServices;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
+@Slf4j
 @RestController
 @RequestMapping(path = "/api/users")
 @RequiredArgsConstructor
@@ -20,11 +23,13 @@ public class UsersController {
     @PostMapping("/save")
     public ResponseEntity<UsersResponse> register(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
         UsersRequest request = new UsersRequest(name, email, password);
+        log.info("Registering user with name: {}, email: {}", name, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(usersServices.registerUser(request));
     }
 
-    @GetMapping("followers")
+    @GetMapping("/followers")
     public ResponseEntity<UserFollowersResponse> followers(@RequestParam Long userID) {
+        log.info("Followers requested by userID: {}", userID);
         return ResponseEntity.ok(usersServices.findFollowers(userID));
     }
 
@@ -32,6 +37,7 @@ public class UsersController {
     public ResponseEntity<ListUserFollowersResponse> userFollow(@RequestParam(value = "id")         Long userID,
                                                                 @RequestParam(value = "followerID") Long followerID) {
 
+        log.info("User follow requested by userID: {}, followerID: {}", userID, followerID);
         return ResponseEntity.status(HttpStatus.OK).body(usersServices.follow(userID, followerID));
     }
 }

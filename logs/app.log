@@ -1,0 +1,42 @@
+2026-10-06T16:18:08.819-03:00  INFO 13308 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 13308 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:18:08.821-03:00  INFO 13308 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:18:12.609-03:00  INFO 13308 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:18:12.610-03:00  INFO 13308 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:18:12.611-03:00  INFO 13308 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-06T16:18:12.743-03:00  INFO 13308 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.737 seconds (process running for 7.529)
+2026-10-06T16:21:04.578-03:00  INFO 20268 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 20268 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:21:04.580-03:00  INFO 20268 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:21:08.187-03:00  INFO 20268 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:21:08.188-03:00  INFO 20268 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:21:08.189-03:00  INFO 20268 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-06T16:21:08.372-03:00  INFO 20268 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.523 seconds (process running for 7.296)
+2026-10-06T16:22:57.113-03:00  INFO 8040 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 8040 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:22:57.115-03:00  INFO 8040 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:23:00.673-03:00  INFO 8040 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:23:00.673-03:00  INFO 8040 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:23:00.675-03:00  INFO 8040 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-10-06T16:23:00.805-03:00  INFO 8040 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.314 seconds (process running for 6.64)
+2026-10-06T16:23:38.638-03:00  INFO 32256 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 32256 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:23:38.641-03:00  INFO 32256 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:23:42.560-03:00  INFO 32256 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:23:42.561-03:00  INFO 32256 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:23:42.562-03:00  INFO 32256 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-06T16:23:42.700-03:00  INFO 32256 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.837 seconds (process running for 7.376)
+2026-10-06T16:25:23.709-03:00  INFO 26908 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 26908 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:25:23.711-03:00  INFO 26908 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:25:27.496-03:00  INFO 26908 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:25:27.496-03:00  INFO 26908 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:25:27.498-03:00  INFO 26908 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-10-06T16:25:27.661-03:00  INFO 26908 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.82 seconds (process running for 7.359)
+2026-10-06T16:38:47.585-03:00  INFO 15484 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 15484 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:38:47.589-03:00  INFO 15484 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:38:51.105-03:00  INFO 15484 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:38:51.106-03:00  INFO 15484 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:38:51.107-03:00  INFO 15484 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-06T16:38:51.237-03:00  INFO 15484 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.47 seconds (process running for 7.062)
+2026-10-06T16:39:23.238-03:00  INFO 28860 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 28860 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-06T16:39:23.242-03:00  INFO 28860 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-06T16:39:26.842-03:00  INFO 28860 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-06T16:39:26.843-03:00  INFO 28860 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-06T16:39:26.844-03:00  INFO 28860 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-06T16:39:26.960-03:00  INFO 28860 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 4.461 seconds (process running for 6.956)

@@ -16,7 +16,7 @@ RUN apk update && apk upgrade --no-cache
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-USER streamxuser
+USER appuser
 
 LABEL key="app.stream-x"
 
@@ -26,4 +26,4 @@ COPY --from=builder /app/target/*.jar stream-x.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "stream-x.jar"]
+ENTRYPOINT ["java", "-Xmx380m", "-Xms380m", "-jar", "stream-x.jar"]

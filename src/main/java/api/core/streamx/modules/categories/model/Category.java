@@ -21,7 +21,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "category", unique = true)
     private String categoryName;
 
     @OneToMany(mappedBy = "category")
