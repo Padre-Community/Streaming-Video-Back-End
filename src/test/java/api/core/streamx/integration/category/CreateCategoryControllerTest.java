@@ -52,7 +52,7 @@ public class CreateCategoryControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.toJson(request)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.name").value("anime"));
+                .andExpect(jsonPath("$.categoryName").value("anime"));
 
         verify(categoryServices).createCategory(request);
     }
