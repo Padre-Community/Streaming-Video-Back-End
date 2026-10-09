@@ -59,7 +59,7 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public List<CategoryResponse> getAllCategories() {
+    public List<CategoryResponse> getAllCategories(Pageable pageable) {
         return List.of();
     }
 

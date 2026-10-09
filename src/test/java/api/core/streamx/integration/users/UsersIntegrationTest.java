@@ -69,13 +69,10 @@ public class UsersIntegrationTest {
                 )
         );
 
-        when(usersServices.findFollowers(1L))
-                .thenReturn(response);
+        when(usersServices.findFollowers(1L)).thenReturn(response);
 
-        mockMvc.perform(
-                        get("/api/users/followers")
-                                .param("userID", "1")
-                )
+        mockMvc.perform(get("/api/users/followers").param("userID", "1")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userName").value("User"))
                 .andExpect(jsonPath("$.followers").isArray())

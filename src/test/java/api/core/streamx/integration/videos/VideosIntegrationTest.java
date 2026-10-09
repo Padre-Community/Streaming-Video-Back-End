@@ -4,10 +4,10 @@ import api.core.streamx.modules.audit.repository.AuditRepository;
 import api.core.streamx.modules.videos.controller.VideosController;
 import api.core.streamx.modules.videos.dto.response.VideosResponse;
 import api.core.streamx.modules.videos.services.VideoServicesImpl;
-import api.core.streamx.modules.videos.services.VideosServices;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -48,7 +48,8 @@ public class VideosIntegrationTest {
         when(videosServices.findVideosByCategory(categoryId)).thenReturn(listaFalsa);
 
         mockMvc.perform(get("/api/video/category")
-                        .param("category_id", String.valueOf(categoryId)))
+                        .param("category_id", String.valueOf(categoryId))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].channelName").value("Canal Teste"))
                 .andExpect(jsonPath("$[0].title").value("Vídeo Teste"))
@@ -65,7 +66,8 @@ public class VideosIntegrationTest {
         when(videosServices.findVideosByCategory(categoryId)).thenReturn(List.of());
 
         mockMvc.perform(get("/api/video/category")
-                        .param("category_id", String.valueOf(categoryId)))
+                        .param("category_id", String.valueOf(categoryId))
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
 
