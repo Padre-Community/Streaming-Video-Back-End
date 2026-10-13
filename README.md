@@ -101,14 +101,15 @@
 > ## EXECUTE
 ---
 
-- **Para acessar a aplicação, via [Web](http://localhost:8080)**
+- **Para acessar a aplicação em produção**
 ````bash
-    http://localhost:8080
+    http://159.89.184.82:8080
 ````
-- **Para acessar a API, via [Swagger-UI](http://localhost:8080/swagger-ui/index.html#/)**
+- **Para acessar a API, via [Swagger-UI](http://159.89.184.82:8080/swagger-ui/index.html#/)**
 ````bash
-    http://localhost:8080/swagger-ui/index.html#/
+    http://159.89.184.82:8080/swagger-ui/index.html#/
 ````
+Configure `APP_PUBLIC_URL` no ambiente para alterar a URL base anunciada pelo Swagger (por exemplo, `http://localhost:8080` no desenvolvimento local).
 > ## EXECUTAR APLICAÇÃO VIA IDE
 ---
 

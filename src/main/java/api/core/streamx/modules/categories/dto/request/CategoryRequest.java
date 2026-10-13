@@ -1,3 +1,13 @@
 package api.core.streamx.modules.categories.dto.request;
 
-public record CategoryRequest(String name) {}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record CategoryRequest(
+        @NotBlank
+        @Size(min = 5, max = 100)
+        String name
+
+) {
+
+}
