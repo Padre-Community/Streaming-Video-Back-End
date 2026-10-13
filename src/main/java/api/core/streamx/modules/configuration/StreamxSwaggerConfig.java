@@ -6,27 +6,28 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class StreamxSwaggerConfig {
 
     @Bean
-    public OpenAPI customOpenAPI() {
-
-        Server release = new Server();
-        release.setUrl("http://localhost:8080");
-        release.setDescription("Server de release");
-
+    public OpenAPI customOpenAPI(@Value("${app.public-url}") String publicUrl) {
         Server production = new Server();
-        production.setUrl("http://localhost:8080");
-        production.setDescription("Server de produção");
+        Server local = new Server();
+
+        local.setUrl("http://localhost:8080");
+        local.setDescription("Servidor local para desenvolvimento");
+
+        production.setUrl(publicUrl);
+        production.setDescription("Servidor da aplicação");
 
         return new OpenAPI()
-                .servers(Arrays.asList(release, production))
+                .servers(List.of(local, production))
                 .info(new Info()
                         .title("Aplicação de Streaming Video StreamX da Padre Community")
                         .description("""

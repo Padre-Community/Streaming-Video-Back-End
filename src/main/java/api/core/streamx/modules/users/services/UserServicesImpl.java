@@ -99,7 +99,7 @@ public class UserServicesImpl implements UsersServices {
 
         Follower f = followersRepository.save(newFollow);
 
-        return new ListUserFollowersResponse(user.getName(), f.getFollowers().getFollowers());
+        return new ListUserFollowersResponse(user.getName(), f.getFollowers().getFollowers().stream().map(follow -> new FollowerResponse(follow.getNameFollower())).toList());
     }
 
     @Override
@@ -111,7 +111,10 @@ public class UserServicesImpl implements UsersServices {
     public List<ListUserFollowersResponse> viewUserFollowers(Long userID) {
         return usersRepository.findById(userID)
                               .stream()
-                              .map((u) -> new ListUserFollowersResponse(u.getName(), u.getFollowers().stream().sorted(Comparator.comparing(Follower::getNameFollower)).toList()))
+                              .map((u) -> new ListUserFollowersResponse(u.getName(), u.getFollowers().stream()
+                                                                                                            .map(f -> new FollowerResponse(f.getNameFollower()))
+                                                                                                            .sorted(Comparator.comparing(FollowerResponse::userName))
+                                                                                                            .toList()))
                               .toList();
     }
 
