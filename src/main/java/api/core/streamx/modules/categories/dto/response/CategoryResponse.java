@@ -1,4 +1,4 @@
 package api.core.streamx.modules.categories.dto.response;
 
-public record CategoryResponse(Long id, String categoryName) {
+public record CategoryResponse(String categoryName) {
 }
