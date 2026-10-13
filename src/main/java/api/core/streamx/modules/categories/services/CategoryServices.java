@@ -2,7 +2,6 @@ package api.core.streamx.modules.categories.services;
 
 import api.core.streamx.modules.categories.dto.request.CategoryRequest;
 import api.core.streamx.modules.categories.dto.response.CategoryResponse;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -17,5 +16,5 @@ public interface CategoryServices {
 
     void deleteCategory(String categoryName);
 
-    List<CategoryResponse> getAllCategories(PageRequest pageRequest);
+    List<CategoryResponse> getAllCategories();
 }

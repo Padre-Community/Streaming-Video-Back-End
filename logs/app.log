@@ -646,3 +646,126 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
 2026-10-09T12:17:42.612-03:00 DEBUG 1892 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@29c41e14: (connection evicted)
 2026-10-09T12:17:42.613-03:00 DEBUG 1892 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After  shutdown stats (total=0/10, idle=0/5, active=0, waiting=0)
 2026-10-09T12:17:42.614-03:00  INFO 1892 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-09T16:29:46.592-03:00  INFO 6276 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Starting CreateCategoryControllerTest using Java 21.0.11 with PID 6276 (started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-09T16:29:46.594-03:00  INFO 6276 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-10-09T16:29:51.454-03:00  INFO 6276 --- [steamx-backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-09T16:29:51.454-03:00  INFO 6276 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-09T16:29:51.456-03:00  INFO 6276 --- [steamx-backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-09T16:29:51.619-03:00  INFO 6276 --- [steamx-backend] [main] a.c.s.i.c.CreateCategoryControllerTest   : Started CreateCategoryControllerTest in 5.654 seconds (process running for 7.958)
+2026-10-09T16:33:37.178-03:00  INFO 35096 --- [steamx-backend] [main] api.core.streamx.StreamxApplication      : Starting StreamxApplication using Java 21.0.11 with PID 35096 (C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end\target\classes started by henrique.silva in C:\Users\henrique.silva\Documents\GitHub\Streaming-Video-Back-end)
+2026-10-09T16:33:37.181-03:00  INFO 35096 --- [steamx-backend] [main] api.core.streamx.StreamxApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-10-09T16:33:39.301-03:00  INFO 35096 --- [steamx-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-09T16:33:39.685-03:00  INFO 35096 --- [steamx-backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 367 ms. Found 11 JPA repository interfaces.
+2026-10-09T16:33:40.710-03:00  INFO 35096 --- [steamx-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-09T16:33:40.731-03:00  INFO 35096 --- [steamx-backend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-09T16:33:40.732-03:00  INFO 35096 --- [steamx-backend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-09T16:33:40.876-03:00  INFO 35096 --- [steamx-backend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-09T16:33:40.877-03:00  INFO 35096 --- [steamx-backend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3634 ms
+2026-10-09T16:33:41.209-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : Class org.postgresql.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528
+2026-10-09T16:33:41.502-03:00  INFO 35096 --- [steamx-backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-09T16:33:41.613-03:00  INFO 35096 --- [steamx-backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-10-09T16:33:41.669-03:00  INFO 35096 --- [steamx-backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-09T16:33:42.051-03:00  INFO 35096 --- [steamx-backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-09T16:33:42.102-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - configuration:
+2026-10-09T16:33:42.105-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : allowPoolSuspension.............false
+2026-10-09T16:33:42.106-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : autoCommit......................false
+2026-10-09T16:33:42.106-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : catalog.........................none
+2026-10-09T16:33:42.106-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionInitSql...............none
+2026-10-09T16:33:42.106-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionTestQuery.............none
+2026-10-09T16:33:42.107-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : connectionTimeout...............30000
+2026-10-09T16:33:42.107-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : credentials.....................com.zaxxer.hikari.util.Credentials@5e1a7d3
+2026-10-09T16:33:42.107-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSource......................none
+2026-10-09T16:33:42.108-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceClassName.............none
+2026-10-09T16:33:42.108-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceJNDI..................none
+2026-10-09T16:33:42.109-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : dataSourceProperties............{password=<masked>}
+2026-10-09T16:33:42.109-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : driverClassName................."org.postgresql.Driver"
+2026-10-09T16:33:42.109-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : exceptionOverride...............none
+2026-10-09T16:33:42.110-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : exceptionOverrideClassName......none
+2026-10-09T16:33:42.110-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : healthCheckProperties...........{}
+2026-10-09T16:33:42.110-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : healthCheckRegistry.............none
+2026-10-09T16:33:42.110-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : idleTimeout.....................180000
+2026-10-09T16:33:42.110-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : initializationFailTimeout.......1
+2026-10-09T16:33:42.111-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : isolateInternalQueries..........false
+2026-10-09T16:33:42.111-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : jdbcUrl.........................jdbc:postgresql://localhost:5432/streamx_db
+2026-10-09T16:33:42.111-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : keepaliveTime...................120000
+2026-10-09T16:33:42.111-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : leakDetectionThreshold..........240000
+2026-10-09T16:33:42.112-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : maxLifetime.....................1800000
+2026-10-09T16:33:42.112-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : maximumPoolSize.................10
+2026-10-09T16:33:42.112-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : metricRegistry..................none
+2026-10-09T16:33:42.112-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : metricsTrackerFactory...........none
+2026-10-09T16:33:42.112-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : minimumIdle.....................5
+2026-10-09T16:33:42.113-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : password........................<masked>
+2026-10-09T16:33:42.113-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : poolName........................"HikariPool-1"
+2026-10-09T16:33:42.113-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : readOnly........................false
+2026-10-09T16:33:42.114-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : registerMbeans..................false
+2026-10-09T16:33:42.114-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : scheduledExecutor...............none
+2026-10-09T16:33:42.114-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : schema..........................none
+2026-10-09T16:33:42.115-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : threadFactory...................internal
+2026-10-09T16:33:42.115-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : transactionIsolation............default
+2026-10-09T16:33:42.115-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : username........................"streamx"
+2026-10-09T16:33:42.115-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariConfig           : validationTimeout...............5000
+2026-10-09T16:33:42.116-03:00  INFO 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-09T16:33:42.132-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Attempting to create/setup new connection (011db0f2-2f4a-44c7-ba7b-be009611b474)
+2026-10-09T16:33:42.403-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Established new connection (011db0f2-2f4a-44c7-ba7b-be009611b474)
+2026-10-09T16:33:42.405-03:00  INFO 35096 --- [steamx-backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@343727b5
+2026-10-09T16:33:42.406-03:00  INFO 35096 --- [steamx-backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-09T16:33:42.469-03:00  WARN 35096 --- [steamx-backend] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-10-09T16:33:42.515-03:00 DEBUG 35096 --- [steamx-backend] [main] com.zaxxer.hikari.pool.ProxyConnection   : HikariPool-1 - Executed rollback on connection org.postgresql.jdbc.PgConnection@343727b5 due to dirty commit state on close().
+2026-10-09T16:33:42.519-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Before cleanup stats (total=1/10, idle=1/5, active=0, waiting=0)
+2026-10-09T16:33:42.522-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After  cleanup stats (total=1/10, idle=1/5, active=0, waiting=0)
+2026-10-09T16:33:42.525-03:00  INFO 35096 --- [steamx-backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.18
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-09T16:33:42.525-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Attempting to create/setup new connection (d3493e9c-f0d0-4ebb-b5d9-f1e659e93bb6)
+2026-10-09T16:33:42.559-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Established new connection (d3493e9c-f0d0-4ebb-b5d9-f1e659e93bb6)
+2026-10-09T16:33:42.560-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7c9248e7
+2026-10-09T16:33:42.596-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=2/10, idle=2/5, active=0, waiting=0)
+2026-10-09T16:33:42.597-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Attempting to create/setup new connection (bf9cd6ad-730d-4622-9ef1-5d67e5d474c3)
+2026-10-09T16:33:42.621-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Established new connection (bf9cd6ad-730d-4622-9ef1-5d67e5d474c3)
+2026-10-09T16:33:42.621-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7255b905
+2026-10-09T16:33:42.658-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=3/10, idle=3/5, active=0, waiting=0)
+2026-10-09T16:33:42.658-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Attempting to create/setup new connection (5fd37df8-6888-4060-ba1f-e14f1412efc2)
+2026-10-09T16:33:42.682-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Established new connection (5fd37df8-6888-4060-ba1f-e14f1412efc2)
+2026-10-09T16:33:42.682-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@766a2397
+2026-10-09T16:33:42.720-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=4/10, idle=4/5, active=0, waiting=0)
+2026-10-09T16:33:42.721-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Attempting to create/setup new connection (b4f600cf-dd15-4d16-86c6-e7fbd0ed3649)
+2026-10-09T16:33:42.741-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Established new connection (b4f600cf-dd15-4d16-86c6-e7fbd0ed3649)
+2026-10-09T16:33:42.742-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3368b33e
+2026-10-09T16:33:42.783-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:33:44.156-03:00  INFO 35096 --- [steamx-backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-09T16:33:44.184-03:00  INFO 35096 --- [steamx-backend] [main] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@408708a1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-10-09T16:33:44.554-03:00  INFO 35096 --- [steamx-backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-09T16:33:44.988-03:00  INFO 35096 --- [steamx-backend] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-09T16:33:46.184-03:00  WARN 35096 --- [steamx-backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-09T16:33:47.194-03:00  INFO 35096 --- [steamx-backend] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoints beneath base path '/actuator'
+2026-10-09T16:33:47.370-03:00  INFO 35096 --- [steamx-backend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-09T16:33:47.385-03:00  INFO 35096 --- [steamx-backend] [main] api.core.streamx.StreamxApplication      : Started StreamxApplication in 10.983 seconds (process running for 11.896)
+2026-10-09T16:33:47.499-03:00  WARN 35096 --- [steamx-backend] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-09T16:33:47.499-03:00  WARN 35096 --- [steamx-backend] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-09T16:33:47.500-03:00  INFO 35096 --- [steamx-backend] [main] api.core.streamx.StreamxApplication      : StreamxApplication Started 200 OK
+2026-10-09T16:33:50.505-03:00  INFO 35096 --- [steamx-backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-09T16:33:50.505-03:00  INFO 35096 --- [steamx-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-09T16:33:50.507-03:00  INFO 35096 --- [steamx-backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-09T16:34:12.538-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Before cleanup stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:34:12.539-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After  cleanup stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:34:12.539-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-10-09T16:34:42.548-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Before cleanup stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:34:42.548-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After  cleanup stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:34:42.548-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-10-09T16:34:47.903-03:00  INFO 35096 --- [steamx-backend] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-09T16:34:47.911-03:00  INFO 35096 --- [steamx-backend] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-09T16:34:47.945-03:00  INFO 35096 --- [steamx-backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-09T16:34:47.948-03:00  INFO 35096 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-09T16:34:47.948-03:00 DEBUG 35096 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Before shutdown stats (total=5/10, idle=5/5, active=0, waiting=0)
+2026-10-09T16:34:47.949-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@343727b5: (connection evicted)
+2026-10-09T16:34:47.950-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@7c9248e7: (connection evicted)
+2026-10-09T16:34:47.950-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@7255b905: (connection evicted)
+2026-10-09T16:34:47.951-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@766a2397: (connection evicted)
+2026-10-09T16:34:47.951-03:00 DEBUG 35096 --- [steamx-backend] [HikariPool-1:connection-closer] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@3368b33e: (connection evicted)
+2026-10-09T16:34:47.952-03:00 DEBUG 35096 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After  shutdown stats (total=0/10, idle=0/5, active=0, waiting=0)
+2026-10-09T16:34:47.953-03:00  INFO 35096 --- [steamx-backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
