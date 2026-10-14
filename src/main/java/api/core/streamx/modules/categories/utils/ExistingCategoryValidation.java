@@ -12,7 +12,6 @@ public class ExistingCategoryValidation implements CategoryValidation {
 
     private final CategoryRepository repository;
 
-
     @Override
     public void validate(String request) {
         log.info("Validando categoria: {}", request);
@@ -25,6 +24,6 @@ public class ExistingCategoryValidation implements CategoryValidation {
     private boolean isValidCategory(String categoryName) {
         return repository.findAll()
                 .stream()
-                .noneMatch(categorys -> repository.findById(categorys.getId()).get().getCategoryName().toLowerCase().equals(categoryName));
+                .noneMatch(categories -> repository.findById(categories.getId()).get().getCategoryName().equals(categoryName));
     }
 }
