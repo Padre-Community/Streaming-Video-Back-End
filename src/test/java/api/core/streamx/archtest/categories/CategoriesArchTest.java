@@ -37,7 +37,7 @@ public class CategoriesArchTest {
             .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
             .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
             .whereLayer("Validation").mayOnlyBeAccessedByLayers("Service")
-            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Validation");
+            .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Vaglidation");
 
     //Controller
     @ArchTest
