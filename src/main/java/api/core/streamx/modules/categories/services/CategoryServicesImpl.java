@@ -6,9 +6,12 @@ import api.core.streamx.modules.categories.repository.CategoryRepository;
 import api.core.streamx.modules.categories.utils.ExistingCategoryValidation;
 import api.core.streamx.modules.categories.utils.ValidationNameCategory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import api.core.streamx.modules.categories.dto.response.CategoryResponse;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,8 +60,18 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public List<CategoryResponse> getAllCategories() {
-        return List.of();
+    public Page<CategoryResponse> getAllCategories(Pageable pageable) {
+
+        final Page<Category> page =  categoryRepository.findAll(pageable);
+
+        return new PageImpl<>(page.getContent()
+                .stream()
+                .map(category -> new CategoryResponse(category.getCategoryName()))
+                .collect(Collectors.toList()),
+                pageable,
+                page.getTotalElements());
+
+
     }
 
 }

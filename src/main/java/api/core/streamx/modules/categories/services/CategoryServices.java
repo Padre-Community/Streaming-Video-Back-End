@@ -3,7 +3,9 @@ package api.core.streamx.modules.categories.services;
 import api.core.streamx.modules.categories.dto.request.CategoryRequest;
 import api.core.streamx.modules.categories.dto.response.CategoryResponse;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 
 public interface CategoryServices {
@@ -16,5 +18,5 @@ public interface CategoryServices {
 
     void deleteCategory(String categoryName);
 
-    List<CategoryResponse> getAllCategories();
+    Page<CategoryResponse> getAllCategories(Pageable pageable);
 }
