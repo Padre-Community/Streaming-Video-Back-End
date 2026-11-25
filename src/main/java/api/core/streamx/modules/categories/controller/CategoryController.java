@@ -5,9 +5,15 @@ import api.core.streamx.modules.categories.dto.request.CategoryRequest;
 import api.core.streamx.modules.categories.dto.response.CategoryResponse;
 import api.core.streamx.modules.categories.services.CategoryServicesImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 
 @CrossOrigin
@@ -24,9 +30,9 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryServices.createCategory(categoryRequest));
     }
 
-    public ResponseEntity<?> fetchCategory(String categoryName) {
-        // Implementation Caller here
-        // { "category": "Category Name" }
-        return null;
+    @GetMapping("/list")
+    public ResponseEntity<Page<CategoryResponse>> getAllCategoriesPaginated(@PageableDefault(page = 0, size = 10) @SortDefault(sort = "categoryName", direction = Sort.Direction.ASC) Pageable pageable) {
+
+        return ResponseEntity.ok(categoryServices.getAllCategories(pageable));
     }
 }
